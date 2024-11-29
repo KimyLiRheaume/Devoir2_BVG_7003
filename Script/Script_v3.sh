@@ -12,7 +12,7 @@
 # ========================================
 
 # Directory for SnpEff
-mkdir -p ~/Devoir2_BVG_7003/Script/snpEff && cd ~/Devoir2_BVG_7003/Scripts/snpEff
+mkdir -p ~/Devoir2_BVG_7003/Script/snpEff && cd ~/Devoir2_BVG_7003/Script/snpEff
 
 # Download the latest version of SnpEff
 wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
@@ -31,7 +31,7 @@ java -jar ~/Devoir2_BVG_7003/Script/snpEff/snpEff.jar -h
 java -jar ~/Devoir2_BVG_7003/Script/snpEff/snpEff.jar download GRCh38.99
 
 #Directory for Parallel
-mkdir -p ~/Devoir2_BVG_7003/Script/paralell && cd ~/Devoir2_BVG_7003/Scripts/paralell
+mkdir -p ~/Devoir2_BVG_7003/Script/paralell && cd ~/Devoir2_BVG_7003/Script/parallel
 
 # Download the latest version of Parallel
 $ (wget -O - pi.dk/3 || lynx -source pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) > install.sh
