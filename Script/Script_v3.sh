@@ -52,14 +52,14 @@ fi
 # ==== Définir les variables ====
 DATA=$1
 BARCODE=$2
-TOOL="scripts/sabre.sh"
+TOOL="sabre"
 ADAP="AGATCGGAA"
-REF="refgenome/Gmax_275_v2.0.fa"
+REF="Data/Gmax_275_v2.0.fa.gz"
 CPU=4
-OUT_FASTQC_PRE="results/fastqc_pre_trim"
-OUT_FASTQC_POST="results/fastqc_post_trim"
-OUT_ASSEMBLY="results/assembly"
-OUT_RESULTS="results/results1"
+OUT_FASTQC_PRE="Résultats/fastqc_pre_trim"
+OUT_FASTQC_POST="Résultats/fastqc_post_trim"
+OUT_ASSEMBLY="Résultats/assembly"
+OUT_RESULTS="Résultats/results1"
 
 # ==== Vérifications initiales ====
 if [ ! -f "$DATA" ]; then
@@ -79,7 +79,7 @@ fi
 
 # ==== Étape 1 : Démultiplexage ====
 exec &> logs/sabre.log
-mkdir -p results
+mkdir -p Résultats
 echo "Démarrage du démultiplexage avec sabre..."
 $TOOL se -f $DATA -b $BARCODE -u results/unk.fastq
 if [ $? -ne 0 ]; then
