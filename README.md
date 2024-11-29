@@ -41,12 +41,19 @@ Les outils suivants doivent être installés et disponibles dans votre `$PATH` :
 2. Assurez-vous que toutes les dépendances sont installées et configurées correctement.
 3. Placez vos fichiers d'entrée dans le dossier data/.
 
-## Utilisation 
+## Utilisation
 Pour exécuter le pipeline, utilisez la commande suivante :
- ```bash pipeline.sh
+```bash
+bash pipeline.sh
 
-## Exemple
-Un exemple de jeu de données est fourni dans le dossier data/. L'exécution génère les résultats dans le dossier results/.
+
+
+## Explication :
+- La ligne de début de la boîte de code est marquée par trois accents graves suivis d'une langue (par exemple `bash` pour la coloration syntaxique).
+- La ligne de fin de la boîte de code est simplement trois accents graves (\`\`\`) sans rien après.
+
+
+
 
 ## Structure du dépôt 
 variant-calling-pipeline/
