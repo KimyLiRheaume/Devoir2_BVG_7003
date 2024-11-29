@@ -12,7 +12,7 @@
 # ========================================
 #Chargement des modules permettant d'exécuter les commandes du script
  wget http://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2
-irectory for SnpEff
+Directory for SnpEff
 mkdir -p ~/.local/snpEff && cd ~/.local/snpEff
 
 # Download the latest version of SnpEff
