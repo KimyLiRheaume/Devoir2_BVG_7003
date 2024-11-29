@@ -21,14 +21,14 @@ wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
 unzip snpEff_latest_core.zip
 
 # Add SnpEff to PATH
-echo 'export PATH=$HOME/Devoir2_BVG_7003/Scripts/snpEff:$PATH' >> ~/.bashrc
+echo 'export PATH=$HOME/Devoir2_BVG_7003/Script/snpEff:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
 # Test the installation
-java -jar ~/Devoir2_BVG_7003/Scripts/snpEff/snpEff.jar -h
+java -jar ~/Devoir2_BVG_7003/Script/snpEff/snpEff.jar -h
 
 # (Optional) Download a genome database
-java -jar ~/Devoir2_BVG_7003/Scripts/snpEff/snpEff.jar download GRCh38.99
+java -jar ~/Devoir2_BVG_7003/Script/snpEff/snpEff.jar download GRCh38.99
 
 #Directory for Parallel
 mk dir -p ~/Devoir2_BVG_7003/Script/paralell && cd ~/Devoir2_BVG_7003/Scripts/paralell
@@ -38,7 +38,7 @@ mk dir -p ~/Devoir2_BVG_7003/Script/paralell && cd ~/Devoir2_BVG_7003/Scripts/pa
 pi.dk
 
 # Add paralell to PATH
-echo 'export PATH=$HOME/Devoir2_BVG_7003/Scripts/parallel:$PATH' >> ~/.bashrc
+echo 'export PATH=$HOME/Devoir2_BVG_7003/Script/parallel:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
 
