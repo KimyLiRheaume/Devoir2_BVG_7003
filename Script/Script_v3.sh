@@ -31,7 +31,7 @@ java -jar ~/Devoir2_BVG_7003/Script/snpEff/snpEff.jar -h
 java -jar ~/Devoir2_BVG_7003/Script/snpEff/snpEff.jar download GRCh38.99
 
 #Directory for Parallel
-mk dir -p ~/Devoir2_BVG_7003/Script/paralell && cd ~/Devoir2_BVG_7003/Scripts/paralell
+mkdir -p ~/Devoir2_BVG_7003/Script/paralell && cd ~/Devoir2_BVG_7003/Scripts/paralell
 
 # Download the latest version of Parallel
 (wget -O - pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) | bash
