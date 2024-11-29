@@ -6,6 +6,9 @@
 # Date: [Date actuelle]
 # ========================================
 
+#Chargement des modules permettant d'exécuter les commandes du script
+module load sabre fastqc parallel cutadapt bwa samtools bcftools snpEff
+
 # ==== Définir les variables ====
 DATA="data/FC20150701_1.fq.gz"
 BARCODE="data/FC20150701_1.txt"
