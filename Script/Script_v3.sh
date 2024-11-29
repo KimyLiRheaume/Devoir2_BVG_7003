@@ -10,10 +10,11 @@
 # Auteur: [Votre nom]
 # Date: [Date actuelle]
 # ========================================
-#Chargement des modules permettant d'exécuter les commandes du script
- wget http://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2
-Directory for SnpEff
-mkdir -p ~/.local/snpEff && cd ~/.local/snpEff
+# Chargement des modules permettant d'exécuter les commandes du script
+module load python/3.7 sabre fastqc cutadapt parallel bwa samtools bcftools
+
+# Directory for SnpEff
+mkdir -p ~/Devoir2_BVG_7003/Scripts/snpEff && cd ~/Devoir2_BVG_7003/Scripts/snpEff
 
 # Download the latest version of SnpEff
 wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
@@ -22,14 +23,21 @@ wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
 unzip snpEff_latest_core.zip
 
 # Add SnpEff to PATH
-echo 'export PATH=$HOME/.local/snpEff:$PATH' >> ~/.bashrc
+echo 'export PATH=$HOME/Devoir2_BVG_7003/Scripts/snpEff:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
 # Test the installation
-java -jar ~/.local/snpEff/snpEff.jar -h
+java -jar ~/Devoir2_BVG_7003/Scripts/snpEff/snpEff.jar -h
 
 # (Optional) Download a genome database
-java -jar ~/.local/snpEff/snpEff.jar download GRCh38.99
+java -jar ~/Devoir2_BVG_7003/Scripts/snpEff/snpEff.jar download GRCh38.99
+
+# ==== Vérifier les arguments de ligne de commande ====
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <fastq_file> <barcode_file>"
+    exit 1
+fi
+
 
 
 module load python/3.7 sabre fastqc cutadapt parallel bwa samtools bcftools snpEff
