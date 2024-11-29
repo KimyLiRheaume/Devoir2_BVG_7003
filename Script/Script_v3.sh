@@ -14,7 +14,7 @@
 module load python/3.7 sabre fastqc cutadapt parallel bwa samtools bcftools
 
 # Directory for SnpEff
-mkdir -p ~/Devoir2_BVG_7003/Scripts/snpEff && cd ~/Devoir2_BVG_7003/Scripts/snpEff
+mkdir -p ~/Devoir2_BVG_7003/Script/snpEff && cd ~/Devoir2_BVG_7003/Script/snpEff
 
 # Download the latest version of SnpEff
 wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
@@ -23,14 +23,14 @@ wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
 unzip snpEff_latest_core.zip
 
 # Add SnpEff to PATH
-echo 'export PATH=$HOME/Devoir2_BVG_7003/Scripts/snpEff:$PATH' >> ~/.bashrc
+echo 'export PATH=$HOME/Devoir2_BVG_7003/Script/snpEff:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
 # Test the installation
-java -jar ~/Devoir2_BVG_7003/Scripts/snpEff/snpEff.jar -h
+java -jar ~/Devoir2_BVG_7003/Script/snpEff/snpEff.jar -h
 
 # (Optional) Download a genome database
-java -jar ~/Devoir2_BVG_7003/Scripts/snpEff/snpEff.jar download GRCh38.99
+java -jar ~/Devoir2_BVG_7003/Script/snpEff/snpEff.jar download GRCh38.99
 
 # ==== Vérifier les arguments de ligne de commande ====
 if [ "$#" -ne 2 ]; then
