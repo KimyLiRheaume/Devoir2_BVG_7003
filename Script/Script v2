@@ -6,12 +6,15 @@
 # Date: [Date actuelle]
 # ========================================
 
-#Chargement des modules permettant d'exécuter les commandes du script
-module load sabre fastqc parallel cutadapt bwa samtools bcftools snpEff
+# ==== Vérifier les arguments de ligne de commande ====
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <fastq_file> <barcode_file>"
+    exit 1
+fi
 
 # ==== Définir les variables ====
-DATA="data/FC20150701_1.fq.gz"
-BARCODE="data/FC20150701_1.txt"
+DATA=$1
+BARCODE=$2
 TOOL="scripts/sabre.sh"
 ADAP="AGATCGGAA"
 REF="refgenome/Gmax_275_v2.0.fa"
