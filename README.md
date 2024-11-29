@@ -55,6 +55,7 @@ bash pipeline.sh
 
 
 ## Structure du dépôt 
+```
 variant-calling-pipeline/
 │
 ├── data/                   # Fichiers d'entrée (FASTQ, barcodes, génome de référence)
@@ -63,6 +64,7 @@ variant-calling-pipeline/
 ├── logs/                   # Fichiers journaux pour chaque étape
 ├── README.md               # Documentation du pipeline
 └── pipeline.sh             # Script principal du pipeline
+```
 
 ## Dépannage 
 1. Vérifiez les fichiers journaux dans le dossier logs/ pour identifier les erreurs.
