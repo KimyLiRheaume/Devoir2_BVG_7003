@@ -56,10 +56,10 @@ bash pipeline.sh
 variant-calling-pipeline/
 ```
 │
-├── data/                   # Fichiers d'entrée (FASTQ, barcodes, génome de référence)
-├── résultats/              # Résultats générés par le pipeline
-├── scripts/                # Script principal du pipeline
-├── logs/                   # Fichiers journaux pour chaque étape
+├── Data/                   # Fichiers d'entrée (FASTQ, barcodes, génome de référence)
+├── Résultats/              # Résultats générés par le pipeline
+├── Script/                # Script principal du pipeline
+├── Logs/                   # Fichiers journaux pour chaque étape
 └──README.md                # Documentation du pipeline
 
 ```
