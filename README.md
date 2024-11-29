@@ -55,8 +55,9 @@ bash pipeline.sh
 
 
 ## Structure du dépôt 
-```
+
 variant-calling-pipeline/
+```
 │
 ├── data/                   # Fichiers d'entrée (FASTQ, barcodes, génome de référence)
 ├── results/                # Résultats générés par le pipeline
