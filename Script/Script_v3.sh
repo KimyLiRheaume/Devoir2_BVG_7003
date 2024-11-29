@@ -10,11 +10,6 @@
 # Auteur: [Votre nom]
 # Date: [Date actuelle]
 # ========================================
-# Chargement des modules permettant d'exécuter les commandes du script
-module load python/3.7 sabre fastqc cutadapt parallel bwa samtools bcftools
-
-# Chargement des modules permettant d'exécuter les commandes du script
-module load python/3.7 sabre fastqc cutadapt parallel bwa samtools bcftools
 
 # Directory for SnpEff
 mkdir -p ~/Devoir2_BVG_7003/Script/snpEff && cd ~/Devoir2_BVG_7003/Scripts/snpEff
@@ -42,7 +37,7 @@ mk dir -p ~/Devoir2_BVG_7003/Script/paralell && cd ~/Devoir2_BVG_7003/Scripts/pa
 (wget -O - pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) | bash
 pi.dk
 
-# Add SnpEff to PATH
+# Add paralell to PATH
 echo 'export PATH=$HOME/Devoir2_BVG_7003/Scripts/parallel:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
