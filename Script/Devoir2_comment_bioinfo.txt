@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# Définir les variables communes
+DATA="GBS data"/FC20150701_1.fq.gz
+BARCODE="GBS data"/FC20150701_1.txt
+TOOL=scripts/sabre.sh
+ADAP=AGATCGGAA
+REF=refgenome/Gmax_275_v2.0.fa
+CPU=4
+OUT_FASTQC_PRE="GBS data"/fastqc_pre_trim
+OUT_FASTQC_POST="GBS data"/fastqc_post_trim
+OUT_ASSEMBLY="GBS data"/assembly
+OUT_RESULTS="GBS data"/results1
+
+# Démultiplexage
+exec &> sabre.log
+$TOOL se -f $DATA -b $BARCODE -u unk.fastq
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a un problème à l'étape de démultiplexage avec sabre\n"
+                exit 1
+        fi
+printf "Démultiplexage terminé avec succès\n"
+
+# Analyse de qualité pré-trim
+mkdir -p $OUT_FASTQC_PRE
+parallel -j $CPU fastqc -o $OUT_FASTQC_PRE {} ::: $(ls -1 $DATA/*.fq.gz)
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a un problème à l'étape FastQC pré-trim\n"
+                exit 1
+        fi
+printf "Analyse de qualité pré-trim terminée avec succès\n"
+
+# Trimming
+cd "GBS data"
+exec &> cutadapt.log
+parallel -j $CPU cutadapt -a $ADAP -m 50 -o {}.fastq {}.fq ::: $(ls -1 *.fq | sed 's/.fq//')
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a une erreur lors de l'exécution de Cutadapt\n"
+                exit 1
+        fi
+
+# Analyse de qualité post-trim
+mkdir -p $OUT_FASTQC_POST
+parallel -j $CPU fastqc -o $OUT_FASTQC_POST {} ::: $(ls -1 *.fastq)
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a un problème à l'étape FastQC post-trim\n"
+                exit 1
+        fi
+printf "Analyse de qualité post-trim terminée avec succès\n"
+
+# Alignement
+exec &> bwa.log
+cd ../"GBS data"
+parallel -j $CPU $TOOL mem -t $CPU $REF {}.fastq ">" {}.sam ::: $(ls -1 *.fastq | sed 's/.fastq//')
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a une erreur lors de l'alignement\n"
+                exit 1
+        fi
+
+# Conversion SAM en BAM
+cd ../"GBS data"
+exec &> convert.log
+parallel -j $CPU samtools view -b -S -h {}.sam ">" {}.temp.bam ::: $(ls -1 *.sam | sed 's/.sam//')
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a un problème dans l'étape samtools-view\n"
+                exit 1
+        fi
+parallel -j $CPU samtools sort {}.temp.bam -o {}.sort.bam ::: $(ls -1 *.temp.bam | sed 's/.temp.bam//')
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a un problème dans l'étape samtools-sort\n"
+                exit 1
+        fi
+parallel -j $CPU samtools index {} ::: $(ls -1 *.sort.bam)
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a un problème dans l'étape samtools-index\n"
+                exit 1
+        fi
+for i in $(ls -1 *.sort.bam)
+do
+    printf "$PWD/${i}\n" >> "bamlist"
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a un problème dans la production de la liste des fichiers BAM\n"
+                exit 1
+        fi
+done
+
+# Appel de variants
+mkdir -p $OUT_RESULTS
+cd $OUT_RESULTS
+exec &> samt_var.log
+samtools mpileup -g -f $REF -b $DATA > variants.bcf
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a un problème à l'étape samtools_mpileup\n"
+                exit 1
+        fi
+bcftools call -mv variants.bcf > variants.vcf
+        if [ $? -ne 0 ]
+        then
+                printf "Il y a un problème à l'étape bcf2vcf\n"
+                exit 1
+        fi
