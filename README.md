@@ -58,10 +58,15 @@ bash pipeline.sh
 variant-calling-pipeline/
 │
 ├── data/                   # Fichiers d'entrée (FASTQ, barcodes, génome de référence)
+
 ├── results/                # Résultats générés par le pipeline
+
 ├── scripts/                # Scripts auxiliaires (e.g., sabre.sh)
+
 ├── logs/                   # Fichiers journaux pour chaque étape
+
 ├── README.md               # Documentation du pipeline
+
 └── pipeline.sh             # Script principal du pipeline
 
 ## Dépannage 
