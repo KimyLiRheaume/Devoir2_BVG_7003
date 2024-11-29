@@ -6,6 +6,9 @@
 # Date: [Date actuelle]
 # ========================================
 
+#Chargement des modules permettant d'exécuter les commandes du script
+module load sabre fastqc parallel cutadapt bwa samtools bcftools snpEff
+
 # ==== Vérifier les arguments de ligne de commande ====
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <fastq_file> <barcode_file>"
