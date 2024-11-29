@@ -60,10 +60,10 @@ variant-calling-pipeline/
 ```
 │
 ├── data/                   # Fichiers d'entrée (FASTQ, barcodes, génome de référence)
-├── résultats/                # Résultats générés par le pipeline
+├── résultats/              # Résultats générés par le pipeline
 ├── scripts/                # Script principal du pipeline
 ├── logs/                   # Fichiers journaux pour chaque étape
-└──README.md               # Documentation du pipeline
+└──README.md                # Documentation du pipeline
 
 ```
 
