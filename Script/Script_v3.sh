@@ -1,17 +1,42 @@
 #!/bin/bash
 
 # ========================================
-# Pipeline automatisé pour l'appel de variants :)
+# Pipeline automatisé pour l'appel de variants
 # Auteur: [Votre nom]
 # Date: [Date actuelle]
 # ========================================
 
+# Pipeline automatisé pour l'appel de variants
+# Auteur: [Votre nom]
+# Date: [Date actuelle]
+# ========================================
 #Chargement des modules permettant d'exécuter les commandes du script
-module load sabre fastqc cutadapt parallel bwa samtools bcftools snpEff
+ wget http://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2
+irectory for SnpEff
+mkdir -p ~/.local/snpEff && cd ~/.local/snpEff
+
+# Download the latest version of SnpEff
+wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
+
+# Extract the downloaded zip file
+unzip snpEff_latest_core.zip
+
+# Add SnpEff to PATH
+echo 'export PATH=$HOME/.local/snpEff:$PATH' >> ~/.bashrc
+source ~/.bashrc
+
+# Test the installation
+java -jar ~/.local/snpEff/snpEff.jar -h
+
+# (Optional) Download a genome database
+java -jar ~/.local/snpEff/snpEff.jar download GRCh38.99
+
+
+module load python/3.7 sabre fastqc cutadapt parallel bwa samtools bcftools snpEff
 
 # ==== Vérifier les arguments de ligne de commande ====
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <fastq_file> <barcode_file>  <genome_ref_file>"
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <fastq_file> <barcode_file>"
     exit 1
 fi
 
@@ -20,7 +45,7 @@ DATA=$1
 BARCODE=$2
 TOOL="scripts/sabre.sh"
 ADAP="AGATCGGAA"
-REF=$3
+REF="refgenome/Gmax_275_v2.0.fa"
 CPU=4
 OUT_FASTQC_PRE="results/fastqc_pre_trim"
 OUT_FASTQC_POST="results/fastqc_post_trim"
