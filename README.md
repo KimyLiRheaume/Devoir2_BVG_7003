@@ -13,9 +13,9 @@ Ce pipeline est un outil automatisé qui permet de passer des données brutes de
 - Optionnel : Annotation fonctionnelle des variants avec SnpEff.
 
 ## Fichiers d'entrée
-- **Fichier FASTQ** : Données brutes de séquençage (`data/FC20150701_1.fq.gz`).
-- **Fichier de barcodes** : Pour le démultiplexage (`data/FC20150701_1.txt`).
-- **Génome de référence** : Fichier FASTA du génome de référence (`refgenome/Gmax_275_v2.0.fa`).
+- **Fichier FASTQ** : Données brutes de séquençage (`Data/FC20150701_1.fq.gz`).
+- **Fichier de barcodes** : Pour le démultiplexage (`Data/FC20150701_1.txt`).
+- **Génome de référence** : Fichier FASTA du génome de référence (`Data/Gmax_275_v2.0.fa`).
 
 ## Fichiers de sortie
 - **Fichiers FastQC** : Rapports de qualité avant et après trimming.
