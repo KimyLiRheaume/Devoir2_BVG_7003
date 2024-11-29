@@ -34,8 +34,10 @@ java -jar ~/Devoir2_BVG_7003/Script/snpEff/snpEff.jar download GRCh38.99
 mkdir -p ~/Devoir2_BVG_7003/Script/paralell && cd ~/Devoir2_BVG_7003/Scripts/paralell
 
 # Download the latest version of Parallel
-(wget -O - pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) | bash
-pi.dk
+$ (wget -O - pi.dk/3 || lynx -source pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) > install.sh
+$ sha1sum install.sh | grep 12345678
+$ md5sum install.sh
+$ sha512sum install.sh
 
 # Add paralell to PATH
 echo 'export PATH=$HOME/Devoir2_BVG_7003/Script/parallel:$PATH' >> ~/.bashrc
