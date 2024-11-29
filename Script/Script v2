@@ -7,7 +7,7 @@
 # ========================================
 
 #Chargement des modules permettant d'exécuter les commandes du script
-module load sabre fastqc cutadapt bwa samtools bcftools snpEff
+module load sabre fastqc cutadapt parallel bwa samtools bcftools snpEff
 
 # ==== Vérifier les arguments de ligne de commande ====
 if [ "$#" -ne 2 ]; then
