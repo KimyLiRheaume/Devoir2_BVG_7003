@@ -41,8 +41,7 @@ pi.dk
 echo 'export PATH=$HOME/Devoir2_BVG_7003/Script/parallel:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
-
-module load python/3.7 sabre fastqc cutadapt parallel bwa samtools bcftools snpEff
+#module load python/3.7 sabre fastqc cutadapt parallel bwa samtools bcftools snpEff
 
 # ==== Vérifier les arguments de ligne de commande ====
 if [ "$#" -ne 2 ]; then
