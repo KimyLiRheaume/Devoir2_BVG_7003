@@ -46,8 +46,6 @@ Pour exécuter le pipeline, utilisez la commande suivante :
 ```bash
 bash pipeline.sh
 
-
-
 ## Explication :
 - La ligne de début de la boîte de code est marquée par trois accents graves suivis d'une langue (par exemple `bash` pour la coloration syntaxique).
 - La ligne de fin de la boîte de code est simplement trois accents graves (\`\`\`) sans rien après.
