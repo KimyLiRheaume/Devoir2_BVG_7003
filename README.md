@@ -34,10 +34,7 @@ Les outils suivants doivent être installés et disponibles dans votre `$PATH` :
 - (Optionnel) [SnpEff](http://snpeff.sourceforge.net/)
 
 ## Installation
-1. Clonez ce dépôt GitHub :
-   ```bash
-  [ git clone https://github.com/votre-repo/variant-calling-pipeline.git
-   cd variant-calling-pipeline](https://github.com/KimyLiRheaume/Devoir2_BVG_7003.git)
+1. Clonez ce dépôt GitHub :```git clone https://github.com/KimyLiRheaume/Devoir2_BVG_7003.git```
 2. Assurez-vous que toutes les dépendances sont installées et configurées correctement.
 3. Placez vos fichiers d'entrée dans le dossier data/.
 
