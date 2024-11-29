@@ -43,7 +43,7 @@ Les outils suivants doivent être installés et disponibles dans votre `$PATH` :
 
 ## Utilisation 
 Pour exécuter le pipeline, utilisez la commande suivante :
-bash pipeline.sh
+ ```bash pipeline.sh
 
 ## Exemple
 Un exemple de jeu de données est fourni dans le dossier data/. L'exécution génère les résultats dans le dossier results/.
