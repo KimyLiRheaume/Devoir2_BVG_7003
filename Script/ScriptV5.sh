@@ -77,6 +77,13 @@ log_and_check() {
 # Logs
 exec > >(tee "$BASE_DIR/pipeline.log") 2>&1
 
+# Decompress the reference genome if necessary
+if [[ "$REF_GENOME" == *.gz ]]; then
+    log_and_check "gunzip -c $REF_GENOME | bgzip > ${REF_GENOME%.gz}.bgz" \
+        "Decompression of reference genome failed"
+    REF_GENOME="${REF_GENOME%.gz}.bgz"
+fi
+
 # Step 1: Index Reference Genome (if needed)
 if [ ! -f "$REF_GENOME.bwt" ]; then
     echo "Indexing reference genome with BWA..."
