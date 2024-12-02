@@ -17,6 +17,8 @@ Ce pipeline est un outil automatisé qui permet de passer des données brutes de
 - **Fichier de barcodes** : Pour le démultiplexage (`Data/FC20150701_1.txt`).
 - **Génome de référence** : Fichier FASTA du génome de référence (`Data/Gmax_275_v2.0.fa`).
 
+Si vous souhaitez utiliser le pipeline avec d'autres fichiers de données, le pipeline a été conçu pour reconnaitre des fichiers avec des extensions .fq.gz, .fa.gz et .txt. 
+
 ## Fichiers de sortie
 - **Fichiers FastQC** : Rapports de qualité avant et après trimming.
 - **Fichiers BAM** : Alignements triés et indexés.

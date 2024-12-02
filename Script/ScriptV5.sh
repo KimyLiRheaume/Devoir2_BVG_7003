@@ -77,6 +77,13 @@ log_and_check() {
 # Logs
 exec > >(tee "$BASE_DIR/pipeline.log") 2>&1
 
+# Decompress the reference genome if necessary
+if [[ "$REF_GENOME" == *.gz ]]; then
+    log_and_check "gunzip -c $REF_GENOME | bgzip > ${REF_GENOME%.gz}.bgz" \
+        "Decompression of reference genome failed"
+    REF_GENOME="${REF_GENOME%.gz}.bgz"
+fi
+
 # Step 1: Index Reference Genome (if needed)
 if [ ! -f "$REF_GENOME.bwt" ]; then
     echo "Indexing reference genome with BWA..."
@@ -118,13 +125,15 @@ log_and_check "samtools sort $BAM_FILE -o $SORTED_BAM" \
 log_and_check "samtools index $SORTED_BAM" \
     "Échec de l'indexation BAM"
 
-# Step 8: Variant Calling with BCFtools
-VARIANTS_BCF="$BASE_DIR/results/variants.bcf"
-VARIANTS_VCF="$BASE_DIR/results/variants.vcf"
-log_and_check "samtools mpileup -g -f $REF_GENOME $SORTED_BAM > $VARIANTS_BCF" \
-    "Échec du mpileup"
+# Step 8: Variant Calling with BCFtools  
+VARIANTS_BCF="$BASE_DIR/results/variants.bcf"  
+VARIANTS_VCF="$BASE_DIR/results/variants.vcf"  
 
-log_and_check "bcftools call -mv $VARIANTS_BCF > $VARIANTS_VCF" \
+# Use bcftools mpileup instead of samtools mpileup  
+log_and_check "bcftools mpileup -f $REF_GENOME $SORTED_BAM -o $VARIANTS_BCF" \
+    "Échec du mpileup"  
+
+log_and_check "bcftools call -mv $VARIANTS_BCF -o $VARIANTS_VCF" \
     "Échec de l'appel de variants"
 
 echo "Pipeline terminé avec succès. Résultats dans $BASE_DIR"
