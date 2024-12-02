@@ -37,8 +37,9 @@ Les outils suivants doivent être installés et disponibles dans votre `$PATH` :
 Téléchargez SnpEff
 Décompressez l'archive
 Téléchargez la base de données pour Glycine max avec les commandes suivantes en ajustant le bon path pour l'outil SnpEff :
-cd snpEff
-java -jar path/to/snpEff.jar download -v Glycine_max
+
+  cd snpEff
+  java -jar path/to/snpEff.jar download -v Glycine_max
 
 ## Installation
 1. Clonez ce dépôt GitHub :```git clone https://github.com/KimyLiRheaume/Devoir2_BVG_7003.git```
