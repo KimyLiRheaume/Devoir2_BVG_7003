@@ -6,15 +6,9 @@
 # Date: [Date actuelle]
 # ========================================
 
-# ==== Vérifier les arguments de ligne de commande ====
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <fastq_file> <barcode_file>"
-    exit 1
-fi
-
 # ==== Définir les variables ====
-DATA=$1
-BARCODE=$2
+DATA="Data/FC20150701_1.fq.gz"
+BARCODE="Data/FC20150701_1.txt"
 TOOL="sabre"
 ADAP="AGATCGGAA"
 REF="Data/Gmax_275_v2.0.fa.gz"
@@ -54,70 +48,59 @@ echo "Démultiplexage terminé avec succès."
 # ==== Étape 2 : Analyse de qualité pré-trim ====
 mkdir -p $OUT_FASTQC_PRE
 echo "Analyse de qualité (pré-trim) avec FastQC..."
-for file in $DATA; do
-    fastqc -o $OUT_FASTQC_PRE $file
-    if [ $? -ne 0 ]; then
-        echo "Erreur lors de l'analyse de qualité pré-trim pour $file." >&2
-        exit 1
-    fi
-done
+fastqc -o $OUT_FASTQC_PRE $DATA
+if [ $? -ne 0 ]; then
+    echo "Erreur lors de l'analyse de qualité pré-trim pour $DATA." >&2
+    exit 1
+fi
 echo "Analyse de qualité pré-trim terminée."
 
 # ==== Étape 3 : Trimming ====
 exec &> logs/cutadapt.log
 echo "Démarrage du trimming avec Cutadapt..."
 mkdir -p trimmed
-for file in data/*.fq.gz; do
-    cutadapt -a $ADAP -m 50 -o trimmed/${file##*/} $file
-    if [ $? -ne 0 ]; then
-        echo "Erreur lors du trimming pour $file." >&2
-        exit 1
-    fi
-done
+cutadapt -a $ADAP -m 50 -o trimmed/FC20150701_1_trimmed.fq.gz $DATA
+if [ $? -ne 0 ]; then
+    echo "Erreur lors du trimming pour $DATA." >&2
+    exit 1
+fi
 echo "Trimming terminé."
 
 # ==== Étape 4 : Analyse de qualité post-trim ====
 mkdir -p $OUT_FASTQC_POST
 echo "Analyse de qualité (post-trim) avec FastQC..."
-for file in trimmed/*.fastq; do
-    fastqc -o $OUT_FASTQC_POST $file
-    if [ $? -ne 0 ]; then
-        echo "Erreur lors de l'analyse de qualité post-trim pour $file." >&2
-        exit 1
-    fi
-done
+fastqc -o $OUT_FASTQC_POST trimmed/FC20150701_1_trimmed.fq.gz
+if [ $? -ne 0 ]; then
+    echo "Erreur lors de l'analyse de qualité post-trim." >&2
+    exit 1
+fi
 echo "Analyse de qualité post-trim terminée."
 
 # ==== Étape 5 : Alignement ====
 exec &> logs/bwa.log
 mkdir -p aligned
 echo "Alignement avec BWA..."
-for file in trimmed/*.fastq; do
-    bwa mem -t $CPU $REF $file > aligned/${file##*/}.sam
-    if [ $? -ne 0 ]; then
-        echo "Erreur lors de l'alignement pour $file." >&2
-        exit 1
-    fi
-done
+bwa mem -t $CPU $REF trimmed/FC20150701_1_trimmed.fq.gz > aligned/FC20150701_1.sam
+if [ $? -ne 0 ]; then
+    echo "Erreur lors de l'alignement." >&2
+    exit 1
+fi
 echo "Alignement terminé."
 
 # ==== Étape 6 : Conversion SAM -> BAM ====
 exec &> logs/samtools.log
 echo "Conversion des fichiers SAM en BAM..."
 mkdir -p bam_files
-for file in aligned/*.sam; do
-    base=$(basename $file .sam)
-    samtools view -bS $file > bam_files/${base}.bam
-    samtools sort bam_files/${base}.bam -o bam_files/${base}.sorted.bam
-    samtools index bam_files/${base}.sorted.bam
-done
+samtools view -bS aligned/FC20150701_1.sam > bam_files/FC20150701_1.bam
+samtools sort bam_files/FC20150701_1.bam -o bam_files/FC20150701_1.sorted.bam
+samtools index bam_files/FC20150701_1.sorted.bam
 echo "Conversion SAM -> BAM terminée."
 
 # ==== Étape 7 : Appel de variants ====
 exec &> logs/variant_calling.log
 mkdir -p $OUT_RESULTS
 echo "Appel de variants avec SAMtools et BCFtools..."
-samtools mpileup -g -f $REF -b <(ls bam_files/*.sorted.bam) > $OUT_RESULTS/variants.bcf
+samtools mpileup -g -f $REF bam_files/FC20150701_1.sorted.bam > $OUT_RESULTS/variants.bcf
 bcftools call -mv -O v -o $OUT_RESULTS/variants.vcf $OUT_RESULTS/variants.bcf
 if [ $? -ne 0 ]; then
     echo "Erreur lors de l'appel de variants." >&2
