@@ -56,7 +56,7 @@ variant-calling-pipeline/
 ├── Data/                   # Fichiers d'entrée (FASTQ, barcodes, génome de référence)
 ├── Résultats/              # Résultats générés par le pipeline
 ├── Script/                # Script principal du pipeline
-├── Logs/                   # Fichiers journaux pour chaque étape
+├── Logs/                   # Fichier journal pour chaque étape
 └──README.md                # Documentation du pipeline
 
 ```
