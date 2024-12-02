@@ -66,5 +66,6 @@ variant-calling-pipeline/
 1. Vérifiez les fichiers journaux dans le dossier logs/ pour identifier les erreurs.
 2. Assurez-vous que vos fichiers d'entrée sont correctement formatés.
 3. Testez chaque étape individuellement si nécessaire.
+4. Consultez la section Wiki pour plus d'informations et pour collaborer. 
 
 
