@@ -4,12 +4,12 @@
 # ========================================
 
 # Load required modules
-module load sabre/1.000
-module load fastqc/0.12.1
-module load cutadapt/3.2
-module load bwa/0.7.18
-module load samtools/1.21
-module load bcftools/1.15
+module load sabre
+module load fastqc
+module load cutadapt
+module load bwa
+module load samtools
+module load bcftools
 
 # Explicitly set paths for directories and files
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
