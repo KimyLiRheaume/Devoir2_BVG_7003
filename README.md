@@ -10,7 +10,6 @@ Ce pipeline est un outil automatisé qui permet de passer des données brutes de
 - Alignement des lectures sur un génome de référence avec BWA.
 - Conversion des fichiers SAM en BAM triés et indexés avec SAMtools.
 - Appel de SNPs et indels avec SAMtools et BCFtools.
-- Optionnel : Annotation fonctionnelle des variants avec SnpEff.
 
 ## Fichiers d'entrée
 - **Fichier FASTQ** : Données brutes de séquençage (`Data/FC20150701_1.fq.gz`).
