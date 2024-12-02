@@ -27,12 +27,12 @@ echo "Creating a log file in Logs directory:"
 echo "Log entry" > $LOGS_DIR/your_log_file.log
 
 # Display the content of README.md
-#echo "Displaying the content of README.md:"
-#cat $README_FILE
+# echo "Displaying the content of README.md:"
+# cat $README_FILE
 
 # Example of processing a file from Data directory and saving the result in Results directory
 echo "Processing a file from Data directory and saving the result in Results directory:"
-cp $DATA_DIR/your_file.fastq $RESULTS_DIR/processed_file.fastq
+cp $DATA_DIR/FC20150701_1.FQ.GZ $RESULTS_DIR/processed_file.fastq
 
 echo "Script execution completed."
 
