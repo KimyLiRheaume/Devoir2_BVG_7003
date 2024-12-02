@@ -33,7 +33,7 @@ Les outils suivants doivent être installés et disponibles dans votre `$PATH` :
 - [BWA](http://bio-bwa.sourceforge.net/)
 - [SAMtools](http://www.htslib.org/)
 - [BCFtools](http://www.htslib.org/)
-- (Optionnel) [SnpEff](http://snpeff.sourceforge.net/)
+
 
 
 ## Installation
