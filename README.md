@@ -48,7 +48,6 @@ bash ScriptFinal.sh
 
 
 
-
 ## Structure du dépôt 
 
 variant-calling-pipeline/
@@ -67,5 +66,6 @@ variant-calling-pipeline/
 2. Assurez-vous que vos fichiers d'entrée sont correctement formatés.
 3. Testez chaque étape individuellement si nécessaire.
 4. Consultez la section Wiki pour plus d'informations et pour collaborer. 
+
 
 
