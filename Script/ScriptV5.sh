@@ -121,7 +121,7 @@ log_and_check "samtools index $SORTED_BAM" \
 # Step 8: Variant Calling with BCFtools
 VARIANTS_BCF="$BASE_DIR/results/variants.bcf"
 VARIANTS_VCF="$BASE_DIR/results/variants.vcf"
-log_and_check "samtools mpileup -g -f $REF_GENOME $SORTED_BAM > $VARIANTS_BCF" \
+log_and_check "bcftools mpileup -g -f $REF_GENOME $SORTED_BAM > $VARIANTS_BCF" \
     "Échec du mpileup"
 
 log_and_check "bcftools call -mv $VARIANTS_BCF > $VARIANTS_VCF" \
