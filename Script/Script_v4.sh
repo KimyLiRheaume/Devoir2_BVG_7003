@@ -1,4 +1,41 @@
 #!/bin/bash
+#!/bin/bash
+
+# Define relative paths
+DATA_DIR="./Data"
+RESULTS_DIR="./Résultats"
+SCRIPT_DIR="./Script"
+LOGS_DIR="./Logs"
+README_FILE="./README.md"
+
+# Example operations
+
+# List files in Data directory
+echo "Listing files in Data directory:"
+ls $DATA_DIR
+
+# List files in Results directory
+echo "Listing files in Resultats directory:"
+ls $RESULTS_DIR
+
+# Run a script from the Script directory
+echo "Running a script from the Script directory:"
+bash $SCRIPT_DIR/Script_v4.sh
+
+# Create a log file in Logs directory
+echo "Creating a log file in Logs directory:"
+echo "Log entry" > $LOGS_DIR/your_log_file.log
+
+# Display the content of README.md
+#echo "Displaying the content of README.md:"
+#cat $README_FILE
+
+# Example of processing a file from Data directory and saving the result in Results directory
+echo "Processing a file from Data directory and saving the result in Results directory:"
+cp $DATA_DIR/your_file.fastq $RESULTS_DIR/processed_file.fastq
+
+echo "Script execution completed."
+
 
 # Check if required arguments are provided
 if [ $# -ne 3 ]; then
