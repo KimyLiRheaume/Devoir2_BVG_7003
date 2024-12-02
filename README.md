@@ -43,8 +43,8 @@ Les outils suivants doivent être installés et disponibles dans votre `$PATH` :
 
 ## Utilisation
 Pour exécuter le pipeline, utilisez la commande suivante :
-```bash
-ScriptFinal.sh.sh
+```
+bash ScriptFinal.sh
 ```
 
 
