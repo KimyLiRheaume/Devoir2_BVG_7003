@@ -6,17 +6,18 @@
 # Date: [Date actuelle]
 # ========================================
 
+# Determine the script's directory (repository root)
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+
 # ==== Définir les variables ====
-DATA="Data/FC20150701_1.fq.gz"
-BARCODE="Data/FC20150701_1.txt"
-TOOL="sabre"
-ADAP="AGATCGGAA"
-REF="Data/Gmax_275_v2.0.fa.gz"
+DATA="$SCRIPT_DIR/Data/FC20150701_1.fq.gz"
+BARCODE="$SCRIPT_DIR/Data/FC20150701_1.txt"
+REF="$SCRIPT_DIR/Data/Gmax_275_v2.0.fa.gz"
 CPU=4
-OUT_FASTQC_PRE="Résultats/fastqc_pre_trim"
-OUT_FASTQC_POST="Résultats/fastqc_post_trim"
-OUT_ASSEMBLY="Résultats/assembly"
-OUT_RESULTS="Résultats/results1"
+OUT_FASTQC_PRE="$SCRIPT_DIR/Résultats/fastqc_pre_trim"
+OUT_FASTQC_POST="$SCRIPT_DIR/Résultats/fastqc_post_trim"
+OUT_ASSEMBLY="$SCRIPT_DIR/Résultats/assembly"
+OUT_RESULTS="$SCRIPT_DIR/Résultats/results1"
 
 # ==== Vérifications initiales ====
 if [ ! -f "$DATA" ]; then
@@ -35,10 +36,10 @@ if [ ! -f "$REF" ]; then
 fi
 
 # ==== Étape 1 : Démultiplexage ====
-exec &> logs/sabre.log
-mkdir -p Résultats
+exec &> "$SCRIPT_DIR/logs/sabre.log"
+mkdir -p "$SCRIPT_DIR/Résultats"
 echo "Démarrage du démultiplexage avec sabre..."
-$TOOL se -f $DATA -b $BARCODE -u results/unk.fastq
+sabre se -f "$DATA" -b "$BARCODE" -u "$SCRIPT_DIR/results/unk.fastq"
 if [ $? -ne 0 ]; then
     echo "Échec de l'étape de démultiplexage avec sabre." >&2
     exit 1
@@ -46,9 +47,9 @@ fi
 echo "Démultiplexage terminé avec succès."
 
 # ==== Étape 2 : Analyse de qualité pré-trim ====
-mkdir -p $OUT_FASTQC_PRE
+mkdir -p "$OUT_FASTQC_PRE"
 echo "Analyse de qualité (pré-trim) avec FastQC..."
-fastqc -o $OUT_FASTQC_PRE $DATA
+fastqc -o "$OUT_FASTQC_PRE" "$DATA"
 if [ $? -ne 0 ]; then
     echo "Erreur lors de l'analyse de qualité pré-trim pour $DATA." >&2
     exit 1
@@ -56,10 +57,10 @@ fi
 echo "Analyse de qualité pré-trim terminée."
 
 # ==== Étape 3 : Trimming ====
-exec &> logs/cutadapt.log
+exec &> "$SCRIPT_DIR/logs/cutadapt.log"
 echo "Démarrage du trimming avec Cutadapt..."
-mkdir -p trimmed
-cutadapt -a $ADAP -m 50 -o trimmed/FC20150701_1_trimmed.fq.gz $DATA
+mkdir -p "$SCRIPT_DIR/trimmed"
+cutadapt -a "AGATCGGAA" -m 50 -o "$SCRIPT_DIR/trimmed/FC20150701_1_trimmed.fq.gz" "$DATA"
 if [ $? -ne 0 ]; then
     echo "Erreur lors du trimming pour $DATA." >&2
     exit 1
@@ -67,9 +68,9 @@ fi
 echo "Trimming terminé."
 
 # ==== Étape 4 : Analyse de qualité post-trim ====
-mkdir -p $OUT_FASTQC_POST
+mkdir -p "$OUT_FASTQC_POST"
 echo "Analyse de qualité (post-trim) avec FastQC..."
-fastqc -o $OUT_FASTQC_POST trimmed/FC20150701_1_trimmed.fq.gz
+fastqc -o "$OUT_FASTQC_POST" "$SCRIPT_DIR/trimmed/FC20150701_1_trimmed.fq.gz"
 if [ $? -ne 0 ]; then
     echo "Erreur lors de l'analyse de qualité post-trim." >&2
     exit 1
@@ -77,10 +78,10 @@ fi
 echo "Analyse de qualité post-trim terminée."
 
 # ==== Étape 5 : Alignement ====
-exec &> logs/bwa.log
-mkdir -p aligned
+exec &> "$SCRIPT_DIR/logs/bwa.log"
+mkdir -p "$SCRIPT_DIR/aligned"
 echo "Alignement avec BWA..."
-bwa mem -t $CPU $REF trimmed/FC20150701_1_trimmed.fq.gz > aligned/FC20150701_1.sam
+bwa mem -t "$CPU" "$REF" "$SCRIPT_DIR/trimmed/FC20150701_1_trimmed.fq.gz" > "$SCRIPT_DIR/aligned/FC20150701_1.sam"
 if [ $? -ne 0 ]; then
     echo "Erreur lors de l'alignement." >&2
     exit 1
@@ -88,20 +89,20 @@ fi
 echo "Alignement terminé."
 
 # ==== Étape 6 : Conversion SAM -> BAM ====
-exec &> logs/samtools.log
+exec &> "$SCRIPT_DIR/logs/samtools.log"
 echo "Conversion des fichiers SAM en BAM..."
-mkdir -p bam_files
-samtools view -bS aligned/FC20150701_1.sam > bam_files/FC20150701_1.bam
-samtools sort bam_files/FC20150701_1.bam -o bam_files/FC20150701_1.sorted.bam
-samtools index bam_files/FC20150701_1.sorted.bam
+mkdir -p "$SCRIPT_DIR/bam_files"
+samtools view -bS "$SCRIPT_DIR/aligned/FC20150701_1.sam" > "$SCRIPT_DIR/bam_files/FC20150701_1.bam"
+samtools sort "$SCRIPT_DIR/bam_files/FC20150701_1.bam" -o "$SCRIPT_DIR/bam_files/FC20150701_1.sorted.bam"
+samtools index "$SCRIPT_DIR/bam_files/FC20150701_1.sorted.bam"
 echo "Conversion SAM -> BAM terminée."
 
 # ==== Étape 7 : Appel de variants ====
-exec &> logs/variant_calling.log
-mkdir -p $OUT_RESULTS
+exec &> "$SCRIPT_DIR/logs/variant_calling.log"
+mkdir -p "$OUT_RESULTS"
 echo "Appel de variants avec SAMtools et BCFtools..."
-samtools mpileup -g -f $REF bam_files/FC20150701_1.sorted.bam > $OUT_RESULTS/variants.bcf
-bcftools call -mv -O v -o $OUT_RESULTS/variants.vcf $OUT_RESULTS/variants.bcf
+samtools mpileup -g -f "$REF" "$SCRIPT_DIR/bam_files/FC20150701_1.sorted.bam" > "$OUT_RESULTS/variants.bcf"
+bcftools call -mv -O v -o "$OUT_RESULTS/variants.vcf" "$OUT_RESULTS/variants.bcf"
 if [ $? -ne 0 ]; then
     echo "Erreur lors de l'appel de variants." >&2
     exit 1
