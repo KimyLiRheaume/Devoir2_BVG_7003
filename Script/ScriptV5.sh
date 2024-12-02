@@ -123,7 +123,7 @@ VARIANTS_BCF="$BASE_DIR/results/variants.bcf"
 VARIANTS_VCF="$BASE_DIR/results/variants.vcf"  
 
 # Use bcftools mpileup instead of samtools mpileup  
-log_and_check "bcftools mpileup -g -f $REF_GENOME $SORTED_BAM -o $VARIANTS_BCF" \
+log_and_check "bcftools mpileup -f $REF_GENOME $SORTED_BAM -o $VARIANTS_BCF" \
     "Échec du mpileup"  
 
 log_and_check "bcftools call -mv $VARIANTS_BCF -o $VARIANTS_VCF" \
