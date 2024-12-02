@@ -10,7 +10,6 @@ Ce pipeline est un outil automatisé qui permet de passer des données brutes de
 - Alignement des lectures sur un génome de référence avec BWA.
 - Conversion des fichiers SAM en BAM triés et indexés avec SAMtools.
 - Appel de SNPs et indels avec SAMtools et BCFtools.
-- Optionnel : Annotation fonctionnelle des variants avec SnpEff.
 
 ## Fichiers d'entrée
 - **Fichier FASTQ** : Données brutes de séquençage (`Data/FC20150701_1.fq.gz`).
@@ -33,16 +32,8 @@ Les outils suivants doivent être installés et disponibles dans votre `$PATH` :
 - [BWA](http://bio-bwa.sourceforge.net/)
 - [SAMtools](http://www.htslib.org/)
 - [BCFtools](http://www.htslib.org/)
-- (Optionnel) [SnpEff](http://snpeff.sourceforge.net/)
-  
-## Configuration de SnpEff
-Téléchargez SnpEff
-Décompressez l'archive
-Téléchargez la base de données pour Glycine max avec les commandes suivantes en ajustant le bon path pour l'outil SnpEff :
-```bash
-  cd snpEff
-  java -jar path/to/snpEff.jar download -v Glycine_max
-```
+
+
 
 ## Installation
 1. Clonez ce dépôt GitHub :```git clone https://github.com/KimyLiRheaume/Devoir2_BVG_7003.git```
@@ -51,13 +42,9 @@ Téléchargez la base de données pour Glycine max avec les commandes suivantes 
 
 ## Utilisation
 Pour exécuter le pipeline, utilisez la commande suivante :
-```bash
-bash pipeline.sh
 ```
-
-## Explication :
-- La ligne de début de la boîte de code est marquée par trois accents graves suivis d'une langue (par exemple `bash` pour la coloration syntaxique).
-- La ligne de fin de la boîte de code est simplement trois accents graves (\`\`\`) sans rien après.
+bash ScriptFinal.sh
+```
 
 
 
@@ -80,5 +67,4 @@ variant-calling-pipeline/
 2. Assurez-vous que vos fichiers d'entrée sont correctement formatés.
 3. Testez chaque étape individuellement si nécessaire.
 
-## Bonus : Étape d'annotation
-Si SnpEff est installé, le script ajoute une étape d'annotation fonctionnelle pour enrichir les fichiers VCF. Si cette étape échoue, vérifiez que le fichier de configuration SnpEff est correctement configuré.
+
