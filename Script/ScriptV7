@@ -1,669 +1,4 @@
-Last login: Mon Dec  2 11:36:05 on ttys000
-(base) kimy@MacBookAir-de-Kimy-Li ~ % ssh klrhe@manitou.ibis.ulaval.ca 
-(klrhe@manitou.ibis.ulaval.ca) Password: 
-Last login: Mon Dec  2 11:36:21 2024 from 10.243.7.203
-********************************************************************************
-                        _ _              
-                       (_) |             
-  _ __ ___   __ _ _ __  _| |_ ___  _   _ 
- | '_ ` _ \ / _` | '_ \| | __/ _ \| | | |
- | | | | | | (_| | | | | | || (_) | |_| |
- |_| |_| |_|\__,_|_| |_|_|\__\___/ \__,_|
-
-module avail (Pour voir les programmes et les versions disponibles)
-
-
-Documentation complete sur comment utiliser thoth et manitou /
-Complete documentation on how to use thoth and manitou :
-
-|----->>> http://www.ibis.ulaval.ca/services/bioinformatique/documentation-serveurs/ <<-----|
-
--> Vous devez obligatoirement soumettre vos calculs dans le systeme de queue
--> SLURM
-
--> Il n'y a AUCUNE prise de copie de sauvegarde des données sur manitou / thoth
-
--> Pour du support : bioinfo@ibis.ulaval.ca
-
-********************************************************************************
-
-klrhe@manitou:~> cd Devoir2_BVG_7003/
-klrhe@manitou:~/Devoir2_BVG_7003> git pull main origin
-fatal: 'main' does not appear to be a git repository
-fatal: Impossible de lire le dépôt distant.
-
-Veuillez vérifier que vous avez les droits d'accès
-et que le dépôt existe.
-klrhe@manitou:~/Devoir2_BVG_7003> git pull origin main
-remote: Enumerating objects: 43, done.
-remote: Counting objects: 100% (43/43), done.
-remote: Compressing objects: 100% (39/39), done.
-remote: Total 39 (delta 27), reused 0 (delta 0), pack-reused 0 (from 0)
-Dépaquetage des objets: 100% (39/39), 12.14 Kio | 28.00 Kio/s, fait.
-Depuis https://github.com/KimyLiRheaume/Devoir2_BVG_7003
- * branch            main       -> FETCH_HEAD
-   a998c27..4b48fb7  main       -> origin/main
-Mise à jour a998c27..4b48fb7
-Fast-forward
- README.md                                                           |     2 +
- Script/ScriptV5.sh                                                  |   139 +
- Script/Script_v4.sh                                                 |    37 +
- Script/Script_v5                                                    |   115 -
- Tools/sabre                                                         |     1 -
- Tools/snpEff/SnpSift.jar                                            |   Bin 18832860 -> 0 bytes
- Tools/snpEff/data/Glycine_max/snpEffectPredictor.bin                |   Bin 55221105 -> 0 bytes
- Tools/snpEff/examples/1kg.head_chr1.filtered.vcf.gz                 |   Bin 439531 -> 0 bytes
- Tools/snpEff/examples/1kg.head_chr1.vcf.gz                          |   Bin 3770121 -> 0 bytes
- Tools/snpEff/examples/cancer.ann.vcf                                |     8 -
- Tools/snpEff/examples/cancer.eff.vcf                                |     7 -
- Tools/snpEff/examples/cancer.vcf                                    |     2 -
- Tools/snpEff/examples/cancer_pedigree.ann.vcf                       |    10 -
- Tools/snpEff/examples/cancer_pedigree.vcf                           |     5 -
- Tools/snpEff/examples/example_motif.vcf                             |     7 -
- Tools/snpEff/examples/examples.sh                                   |    86 -
- Tools/snpEff/examples/file.vcf                                      | 15428 ----------------------
- Tools/snpEff/examples/intervals.bed                                 |     5 -
- Tools/snpEff/examples/my_annotations.bed                            |     1 -
- Tools/snpEff/examples/samples_cancer.txt                            |     4 -
- Tools/snpEff/examples/samples_cancer_one.txt                        |     1 -
- Tools/snpEff/examples/test.1KG.ann_encode.vcf                       |  9967 --------------
- Tools/snpEff/examples/test.1KG.ann_reg.vcf                          |  9967 --------------
- Tools/snpEff/examples/test.1KG.vcf                                  |  9962 --------------
- Tools/snpEff/examples/test.ann.vcf                                  |     6 -
- Tools/snpEff/examples/test.chr22.ann.filter_missense.vcf            |  4674 -------
- Tools/snpEff/examples/test.chr22.ann.filter_missense_any.vcf        |    29 -
- Tools/snpEff/examples/test.chr22.ann.filter_missense_any_TRMT2A.vcf |    29 -
- Tools/snpEff/examples/test.chr22.ann.filter_missense_first.vcf      |  4662 -------
- Tools/snpEff/examples/test.chr22.ann.one_per_line.txt               | 15415 ----------------------
- Tools/snpEff/examples/test.chr22.ann.txt                            | 15415 ----------------------
- Tools/snpEff/examples/test.chr22.ann.vcf                            | 15420 ----------------------
- Tools/snpEff/examples/test.chr22.vcf                                | 15415 ----------------------
- Tools/snpEff/examples/test.vcf                                      |     1 -
- Tools/snpEff/examples/variants_1.ann.vcf                            |     6 -
- Tools/snpEff/examples/variants_1.vcf                                |     1 -
- Tools/snpEff/examples/variants_2.ann.vcf                            |     6 -
- Tools/snpEff/examples/variants_2.vcf                                |     1 -
- Tools/snpEff/galaxy/snpEff.xml                                      |   101 -
- Tools/snpEff/galaxy/snpEffWrapper.pl                                |    27 -
- Tools/snpEff/galaxy/snpEff_download.xml                             |    32 -
- Tools/snpEff/galaxy/snpSiftWrapper.pl                               |    27 -
- Tools/snpEff/galaxy/snpSift_annotate.xml                            |    43 -
- Tools/snpEff/galaxy/snpSift_caseControl.xml                         |    47 -
- Tools/snpEff/galaxy/snpSift_filter.xml                              |    62 -
- Tools/snpEff/galaxy/snpSift_int.xml                                 |    45 -
- Tools/snpEff/galaxy/tool-data/snpEff_genomes.loc                    | 42792 ------------------------------------------------------------
- Tools/snpEff/galaxy/tool-data/snpEff_genomes.loc.sample             | 42792 ------------------------------------------------------------
- Tools/snpEff/galaxy/tool_conf.xml                                   |    13 -
- Tools/snpEff/galaxy/tool_dependencies.xml                           |    22 -
- Tools/snpEff/scripts/1kg.sh                                         |    32 -
- Tools/snpEff/scripts/annotate_demo.sh                               |   100 -
- Tools/snpEff/scripts/annotate_demo_GATK.sh                          |    56 -
- Tools/snpEff/scripts/bedEffOnePerLine.pl                            |    42 -
- Tools/snpEff/scripts/buildDbNcbi.sh                                 |    51 -
- Tools/snpEff/scripts/cgShore.pl                                     |    39 -
- Tools/snpEff/scripts/cgShore.sh                                     |     8 -
- Tools/snpEff/scripts/countColumns.py                                |     7 -
- Tools/snpEff/scripts/db.pl                                          |    29 -
- Tools/snpEff/scripts/extractSequences.pl                            |    37 -
- Tools/snpEff/scripts/fasta2tab.pl                                   |    32 -
- Tools/snpEff/scripts/fastaSample.pl                                 |    41 -
- Tools/snpEff/scripts/fastaSplit.pl                                  |    43 -
- Tools/snpEff/scripts/fastqSplit.pl                                  |    62 -
- Tools/snpEff/scripts/filterBy.py                                    |    43 -
- Tools/snpEff/scripts/gffRemovePhase.pl                              |    16 -
- Tools/snpEff/scripts/gsa/bayesFactor_correction_scoreCount.r        |    96 -
- Tools/snpEff/scripts/gsa/bayesFactor_correction_scoreCount.sh       |     6 -
- Tools/snpEff/scripts/gsa/bayesFactor_correction_scoreCount_max10.sh |     6 -
- Tools/snpEff/scripts/gsa/checkGeneNames.py                          |   164 -
- Tools/snpEff/scripts/gsa/create_sets.bds                            |    72 -
- Tools/snpEff/scripts/gsa/geneSetOverlap.py                          |    56 -
- Tools/snpEff/scripts/gsa/geneSetOverlap.sort.txt                    | 73671 -------------------------------------------------------------------------------------------------------
- Tools/snpEff/scripts/gsa/geneSetsGtex.py                            |   134 -
- Tools/snpEff/scripts/gsa/pvalue_correction_scoreCount.r             |    90 -
- Tools/snpEff/scripts/gsa/pvalue_correction_scoreCount.sh            |     6 -
- Tools/snpEff/scripts/gsa/pvalue_correction_scoreCount_min10.sh      |     6 -
- Tools/snpEff/scripts/isutf8.py                                      |    30 -
- Tools/snpEff/scripts/join.pl                                        |    57 -
- Tools/snpEff/scripts/joinSnpEff.pl                                  |   125 -
- Tools/snpEff/scripts/make_dbNSFP.sh                                 |    53 -
- Tools/snpEff/scripts/nextProt_filter.pl                             |    89 -
- Tools/snpEff/scripts/ped2vcf.py                                     |    91 -
- Tools/snpEff/scripts/plot.pl                                        |    73 -
- Tools/snpEff/scripts/plotHistogram.pl                               |    88 -
- Tools/snpEff/scripts/plotLabel.pl                                   |    82 -
- Tools/snpEff/scripts/plotMA.pl                                      |    71 -
- Tools/snpEff/scripts/plotQQ.pl                                      |    87 -
- Tools/snpEff/scripts/plotQQsubsample.pl                             |   109 -
- Tools/snpEff/scripts/plotSmoothScatter.pl                           |    82 -
- Tools/snpEff/scripts/plotXY.pl                                      |    79 -
- Tools/snpEff/scripts/queue.pl                                       |   127 -
- Tools/snpEff/scripts/sam2fastq.pl                                   |    14 -
- Tools/snpEff/scripts/snpEff                                         |    50 -
- Tools/snpEff/scripts/snpSift_filter_sample_to_number.pl             |    52 -
- Tools/snpEff/scripts/sortLine.py                                    |     8 -
- Tools/snpEff/scripts/splitChr.pl                                    |    38 -
- Tools/snpEff/scripts/statsNum.pl                                    |    23 -
- Tools/snpEff/scripts/swapCols.pl                                    |    33 -
- Tools/snpEff/scripts/transpose.pl                                   |    26 -
- Tools/snpEff/scripts/txt2fa.pl                                      |     3 -
- Tools/snpEff/scripts/txt2vcf.py                                     |    96 -
- Tools/snpEff/scripts/uniqCount.pl                                   |    13 -
- Tools/snpEff/scripts/uniqCut.pl                                     |    94 -
- Tools/snpEff/scripts/vcfAnnFirst.py                                 |    49 -
- Tools/snpEff/scripts/vcfBareBones.pl                                |    41 -
- Tools/snpEff/scripts/vcfEffHighest.ORI.py                           |    66 -
- Tools/snpEff/scripts/vcfEffOnePerLine.pl                            |    67 -
- Tools/snpEff/scripts/vcfFilterSamples.pl                            |    95 -
- Tools/snpEff/scripts/vcfInfoOnePerLine.pl                           |    30 -
- Tools/snpEff/scripts/vcfOnlyAlts.pl                                 |    14 -
- Tools/snpEff/scripts/vcfReduceGenotypes.pl                          |    17 -
- Tools/snpEff/scripts/vcfRefCorrect.py                               |    76 -
- Tools/snpEff/scripts/wigSplit.pl                                    |    37 -
- Tools/snpEff/snpEff.config                                          | 86333 -------------------------------------------------------------------------------------------------------------------------
- Tools/snpEff/snpEff.jar                                             |   Bin 21277580 -> 0 bytes
- 116 files changed, 178 insertions(+), 366122 deletions(-)
- create mode 100644 Script/ScriptV5.sh
- delete mode 100644 Script/Script_v5
- delete mode 160000 Tools/sabre
- delete mode 100644 Tools/snpEff/SnpSift.jar
- delete mode 100644 Tools/snpEff/data/Glycine_max/snpEffectPredictor.bin
- delete mode 100644 Tools/snpEff/examples/1kg.head_chr1.filtered.vcf.gz
- delete mode 100644 Tools/snpEff/examples/1kg.head_chr1.vcf.gz
- delete mode 100644 Tools/snpEff/examples/cancer.ann.vcf
- delete mode 100644 Tools/snpEff/examples/cancer.eff.vcf
- delete mode 100644 Tools/snpEff/examples/cancer.vcf
- delete mode 100644 Tools/snpEff/examples/cancer_pedigree.ann.vcf
- delete mode 100644 Tools/snpEff/examples/cancer_pedigree.vcf
- delete mode 100644 Tools/snpEff/examples/example_motif.vcf
- delete mode 100755 Tools/snpEff/examples/examples.sh
- delete mode 100644 Tools/snpEff/examples/file.vcf
- delete mode 100644 Tools/snpEff/examples/intervals.bed
- delete mode 100644 Tools/snpEff/examples/my_annotations.bed
- delete mode 100644 Tools/snpEff/examples/samples_cancer.txt
- delete mode 100644 Tools/snpEff/examples/samples_cancer_one.txt
- delete mode 100644 Tools/snpEff/examples/test.1KG.ann_encode.vcf
- delete mode 100644 Tools/snpEff/examples/test.1KG.ann_reg.vcf
- delete mode 100644 Tools/snpEff/examples/test.1KG.vcf
- delete mode 100644 Tools/snpEff/examples/test.ann.vcf
- delete mode 100644 Tools/snpEff/examples/test.chr22.ann.filter_missense.vcf
- delete mode 100644 Tools/snpEff/examples/test.chr22.ann.filter_missense_any.vcf
- delete mode 100644 Tools/snpEff/examples/test.chr22.ann.filter_missense_any_TRMT2A.vcf
- delete mode 100644 Tools/snpEff/examples/test.chr22.ann.filter_missense_first.vcf
- delete mode 100644 Tools/snpEff/examples/test.chr22.ann.one_per_line.txt
- delete mode 100644 Tools/snpEff/examples/test.chr22.ann.txt
- delete mode 100644 Tools/snpEff/examples/test.chr22.ann.vcf
- delete mode 100644 Tools/snpEff/examples/test.chr22.vcf
- delete mode 100644 Tools/snpEff/examples/test.vcf
- delete mode 100644 Tools/snpEff/examples/variants_1.ann.vcf
- delete mode 100644 Tools/snpEff/examples/variants_1.vcf
- delete mode 100644 Tools/snpEff/examples/variants_2.ann.vcf
- delete mode 100644 Tools/snpEff/examples/variants_2.vcf
- delete mode 100644 Tools/snpEff/galaxy/snpEff.xml
- delete mode 100755 Tools/snpEff/galaxy/snpEffWrapper.pl
- delete mode 100644 Tools/snpEff/galaxy/snpEff_download.xml
- delete mode 100755 Tools/snpEff/galaxy/snpSiftWrapper.pl
- delete mode 100644 Tools/snpEff/galaxy/snpSift_annotate.xml
- delete mode 100644 Tools/snpEff/galaxy/snpSift_caseControl.xml
- delete mode 100644 Tools/snpEff/galaxy/snpSift_filter.xml
- delete mode 100644 Tools/snpEff/galaxy/snpSift_int.xml
- delete mode 100644 Tools/snpEff/galaxy/tool-data/snpEff_genomes.loc
- delete mode 100644 Tools/snpEff/galaxy/tool-data/snpEff_genomes.loc.sample
- delete mode 100644 Tools/snpEff/galaxy/tool_conf.xml
- delete mode 100644 Tools/snpEff/galaxy/tool_dependencies.xml
- delete mode 100755 Tools/snpEff/scripts/1kg.sh
- delete mode 100755 Tools/snpEff/scripts/annotate_demo.sh
- delete mode 100755 Tools/snpEff/scripts/annotate_demo_GATK.sh
- delete mode 100755 Tools/snpEff/scripts/bedEffOnePerLine.pl
- delete mode 100755 Tools/snpEff/scripts/buildDbNcbi.sh
- delete mode 100755 Tools/snpEff/scripts/cgShore.pl
- delete mode 100755 Tools/snpEff/scripts/cgShore.sh
- delete mode 100755 Tools/snpEff/scripts/countColumns.py
- delete mode 100755 Tools/snpEff/scripts/db.pl
- delete mode 100755 Tools/snpEff/scripts/extractSequences.pl
- delete mode 100755 Tools/snpEff/scripts/fasta2tab.pl
- delete mode 100755 Tools/snpEff/scripts/fastaSample.pl
- delete mode 100755 Tools/snpEff/scripts/fastaSplit.pl
- delete mode 100755 Tools/snpEff/scripts/fastqSplit.pl
- delete mode 100755 Tools/snpEff/scripts/filterBy.py
- delete mode 100755 Tools/snpEff/scripts/gffRemovePhase.pl
- delete mode 100755 Tools/snpEff/scripts/gsa/bayesFactor_correction_scoreCount.r
- delete mode 100755 Tools/snpEff/scripts/gsa/bayesFactor_correction_scoreCount.sh
- delete mode 100755 Tools/snpEff/scripts/gsa/bayesFactor_correction_scoreCount_max10.sh
- delete mode 100755 Tools/snpEff/scripts/gsa/checkGeneNames.py
- delete mode 100755 Tools/snpEff/scripts/gsa/create_sets.bds
- delete mode 100755 Tools/snpEff/scripts/gsa/geneSetOverlap.py
- delete mode 100644 Tools/snpEff/scripts/gsa/geneSetOverlap.sort.txt
- delete mode 100755 Tools/snpEff/scripts/gsa/geneSetsGtex.py
- delete mode 100644 Tools/snpEff/scripts/gsa/pvalue_correction_scoreCount.r
- delete mode 100755 Tools/snpEff/scripts/gsa/pvalue_correction_scoreCount.sh
- delete mode 100755 Tools/snpEff/scripts/gsa/pvalue_correction_scoreCount_min10.sh
- delete mode 100755 Tools/snpEff/scripts/isutf8.py
- delete mode 100755 Tools/snpEff/scripts/join.pl
- delete mode 100755 Tools/snpEff/scripts/joinSnpEff.pl
- delete mode 100755 Tools/snpEff/scripts/make_dbNSFP.sh
- delete mode 100755 Tools/snpEff/scripts/nextProt_filter.pl
- delete mode 100755 Tools/snpEff/scripts/ped2vcf.py
- delete mode 100755 Tools/snpEff/scripts/plot.pl
- delete mode 100755 Tools/snpEff/scripts/plotHistogram.pl
- delete mode 100755 Tools/snpEff/scripts/plotLabel.pl
- delete mode 100755 Tools/snpEff/scripts/plotMA.pl
- delete mode 100755 Tools/snpEff/scripts/plotQQ.pl
- delete mode 100755 Tools/snpEff/scripts/plotQQsubsample.pl
- delete mode 100755 Tools/snpEff/scripts/plotSmoothScatter.pl
- delete mode 100755 Tools/snpEff/scripts/plotXY.pl
- delete mode 100755 Tools/snpEff/scripts/queue.pl
- delete mode 100755 Tools/snpEff/scripts/sam2fastq.pl
- delete mode 100755 Tools/snpEff/scripts/snpEff
- delete mode 100755 Tools/snpEff/scripts/snpSift_filter_sample_to_number.pl
- delete mode 100755 Tools/snpEff/scripts/sortLine.py
- delete mode 100755 Tools/snpEff/scripts/splitChr.pl
- delete mode 100755 Tools/snpEff/scripts/statsNum.pl
- delete mode 100755 Tools/snpEff/scripts/swapCols.pl
- delete mode 100755 Tools/snpEff/scripts/transpose.pl
- delete mode 100755 Tools/snpEff/scripts/txt2fa.pl
- delete mode 100755 Tools/snpEff/scripts/txt2vcf.py
- delete mode 100755 Tools/snpEff/scripts/uniqCount.pl
- delete mode 100755 Tools/snpEff/scripts/uniqCut.pl
- delete mode 100755 Tools/snpEff/scripts/vcfAnnFirst.py
- delete mode 100755 Tools/snpEff/scripts/vcfBareBones.pl
- delete mode 100755 Tools/snpEff/scripts/vcfEffHighest.ORI.py
- delete mode 100755 Tools/snpEff/scripts/vcfEffOnePerLine.pl
- delete mode 100755 Tools/snpEff/scripts/vcfFilterSamples.pl
- delete mode 100755 Tools/snpEff/scripts/vcfInfoOnePerLine.pl
- delete mode 100755 Tools/snpEff/scripts/vcfOnlyAlts.pl
- delete mode 100755 Tools/snpEff/scripts/vcfReduceGenotypes.pl
- delete mode 100755 Tools/snpEff/scripts/vcfRefCorrect.py
- delete mode 100755 Tools/snpEff/scripts/wigSplit.pl
- delete mode 100644 Tools/snpEff/snpEff.config
- delete mode 100644 Tools/snpEff/snpEff.jar
-klrhe@manitou:~/Devoir2_BVG_7003> bash Script_v5
-bash: Script_v5: Aucun fichier ou dossier de ce type
-klrhe@manitou:~/Devoir2_BVG_7003> cd Script
-klrhe@manitou:~/Devoir2_BVG_7003/Script> ls
-Devoir2_comment_bioinfo.txt  FC20150701_1_BC16.fq  FC20150701_1_BC24.fq  FC20150701_1_BC32.fq  FC20150701_1_BC48.fq  FC20150701_1_BC56.fq  FC20150701_1_BC64.fq           Script_v3.sh
-FC20150701_1_BC09.fq         FC20150701_1_BC17.fq  FC20150701_1_BC25.fq  FC20150701_1_BC41.fq  FC20150701_1_BC49.fq  FC20150701_1_BC57.fq  paralell                       Script_v4.sh
-FC20150701_1_BC10.fq         FC20150701_1_BC18.fq  FC20150701_1_BC26.fq  FC20150701_1_BC42.fq  FC20150701_1_BC50.fq  FC20150701_1_BC58.fq  parallel-20241122              ScriptV5.sh
-FC20150701_1_BC11.fq         FC20150701_1_BC19.fq  FC20150701_1_BC27.fq  FC20150701_1_BC43.fq  FC20150701_1_BC51.fq  FC20150701_1_BC59.fq  parallel-20241122.tar.bz2      snpEff
-FC20150701_1_BC12.fq         FC20150701_1_BC20.fq  FC20150701_1_BC28.fq  FC20150701_1_BC44.fq  FC20150701_1_BC52.fq  FC20150701_1_BC60.fq  parallel-20241122.tar.bz2.sig  snpEff_latest_core.zip
-FC20150701_1_BC13.fq         FC20150701_1_BC21.fq  FC20150701_1_BC29.fq  FC20150701_1_BC45.fq  FC20150701_1_BC53.fq  FC20150701_1_BC61.fq  pipeline2.sh                   snpEff_latest_core.zip.1
-FC20150701_1_BC14.fq         FC20150701_1_BC22.fq  FC20150701_1_BC30.fq  FC20150701_1_BC46.fq  FC20150701_1_BC54.fq  FC20150701_1_BC62.fq  pipeline.sh                    snpEff_latest_core.zip.2
-FC20150701_1_BC15.fq         FC20150701_1_BC23.fq  FC20150701_1_BC31.fq  FC20150701_1_BC47.fq  FC20150701_1_BC55.fq  FC20150701_1_BC63.fq  Script v2
-klrhe@manitou:~/Devoir2_BVG_7003/Script> bash ScriptV5.sh 
-Loading cutadapt/3.2
-  Loading requirement: python/3.7
-DEBUG: SCRIPT_DIR is /home/klrhe/Devoir2_BVG_7003/Script
-DEBUG: DATA_DIR is /home/klrhe/Devoir2_BVG_7003/Script/../Data
-DEBUG: INPUT_FASTQ = /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.fq.gz
-DEBUG: BARCODE_FILE = /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.txt
-DEBUG: REF_GENOME = /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.gz
-Exécution: gunzip -c /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.gz | bgzip > /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.bgz
-
-gzip: /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.gz: unexpected end of file
-Indexing reference genome with BWA...
-Exécution: bwa index /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.bgz
-[bwa_index] Pack FASTA... 4.46 sec
-[bwa_index] Construct BWT for the packed sequence...
-[BWTIncCreate] textLength=687891218, availableWord=60402188
-[BWTIncConstructFromPacked] 10 iterations done. 95462178 characters processed.
-[BWTIncConstructFromPacked] 20 iterations done. 180365538 characters processed.
-[BWTIncConstructFromPacked] 30 iterations done. 255823874 characters processed.
-[BWTIncConstructFromPacked] 40 iterations done. 322887410 characters processed.
-[BWTIncConstructFromPacked] 50 iterations done. 382489634 characters processed.
-[BWTIncConstructFromPacked] 60 iterations done. 435460242 characters processed.
-[BWTIncConstructFromPacked] 70 iterations done. 482536626 characters processed.
-[BWTIncConstructFromPacked] 80 iterations done. 524374210 characters processed.
-[BWTIncConstructFromPacked] 90 iterations done. 561555538 characters processed.
-[BWTIncConstructFromPacked] 100 iterations done. 594598386 characters processed.
-[BWTIncConstructFromPacked] 110 iterations done. 623962914 characters processed.
-[BWTIncConstructFromPacked] 120 iterations done. 650058146 characters processed.
-[BWTIncConstructFromPacked] 130 iterations done. 673247618 characters processed.
-[bwt_gen] Finished constructing BWT in 137 iterations.
-[bwa_index] 467.49 seconds elapse.
-[bwa_index] Update BWT... 2.50 sec
-[bwa_index] Pack forward-only FASTA... 3.40 sec
-[gzclose] buffer error
-ERREUR: Échec de l'indexation du génome de référence.
-klrhe@manitou:~/Devoir2_BVG_7003/Script> bash Scriptv5
-bash: Scriptv5: Aucun fichier ou dossier de ce type
-klrhe@manitou:~/Devoir2_BVG_7003/Script> ls
-Devoir2_comment_bioinfo.txt  FC20150701_1_BC16.fq  FC20150701_1_BC24.fq  FC20150701_1_BC32.fq  FC20150701_1_BC48.fq  FC20150701_1_BC56.fq  FC20150701_1_BC64.fq           Script_v4.sh
-FC20150701_1_BC09.fq         FC20150701_1_BC17.fq  FC20150701_1_BC25.fq  FC20150701_1_BC41.fq  FC20150701_1_BC49.fq  FC20150701_1_BC57.fq  paralell                       ScriptV5.sh
-FC20150701_1_BC10.fq         FC20150701_1_BC18.fq  FC20150701_1_BC26.fq  FC20150701_1_BC42.fq  FC20150701_1_BC50.fq  FC20150701_1_BC58.fq  parallel-20241122              snpEff
-FC20150701_1_BC11.fq         FC20150701_1_BC19.fq  FC20150701_1_BC27.fq  FC20150701_1_BC43.fq  FC20150701_1_BC51.fq  FC20150701_1_BC59.fq  parallel-20241122.tar.bz2      snpEff_latest_core.zip
-FC20150701_1_BC12.fq         FC20150701_1_BC20.fq  FC20150701_1_BC28.fq  FC20150701_1_BC44.fq  FC20150701_1_BC52.fq  FC20150701_1_BC60.fq  parallel-20241122.tar.bz2.sig  snpEff_latest_core.zip.1
-FC20150701_1_BC13.fq         FC20150701_1_BC21.fq  FC20150701_1_BC29.fq  FC20150701_1_BC45.fq  FC20150701_1_BC53.fq  FC20150701_1_BC61.fq  pipeline.sh                    snpEff_latest_core.zip.2
-FC20150701_1_BC14.fq         FC20150701_1_BC22.fq  FC20150701_1_BC30.fq  FC20150701_1_BC46.fq  FC20150701_1_BC54.fq  FC20150701_1_BC62.fq  Script v2
-FC20150701_1_BC15.fq         FC20150701_1_BC23.fq  FC20150701_1_BC31.fq  FC20150701_1_BC47.fq  FC20150701_1_BC55.fq  FC20150701_1_BC63.fq  Script_v3.sh
-klrhe@manitou:~/Devoir2_BVG_7003/Script> bash ScriptV5
-bash: ScriptV5: Aucun fichier ou dossier de ce type
-klrhe@manitou:~/Devoir2_BVG_7003/Script> bash ScriptV5
-bash: ScriptV5: Aucun fichier ou dossier de ce type
-klrhe@manitou:~/Devoir2_BVG_7003/Script> bash ScriptV5.sh 
-Loading cutadapt/3.2
-  Loading requirement: python/3.7
-DEBUG: SCRIPT_DIR is /home/klrhe/Devoir2_BVG_7003/Script
-DEBUG: DATA_DIR is /home/klrhe/Devoir2_BVG_7003/Script/../Data
-DEBUG: INPUT_FASTQ = /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.fq.gz
-DEBUG: BARCODE_FILE = /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.txt
-DEBUG: REF_GENOME = /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.gz
-Exécution: gunzip -c /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.gz | bgzip > /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.bgz
-	
-gzip: /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.gz: unexpected end of file
-Exécution: sabre se -f /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.fq.gz -b /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.txt -u /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_133857/unknown.fastq
-
-Total FastQ records: 250000
-
-FastQ records for barcode TTCCTACCAGTCGAT: 2305
-FastQ records for barcode CCGCAATCATCGAT: 1432
-FastQ records for barcode TCCTGGCACATCGAT: 3170
-FastQ records for barcode CTGAGTTCCGACGAT: 2281
-FastQ records for barcode CCTTAGAGTTCGAT: 1285
-FastQ records for barcode TTCCTGCTTCACGAT: 2302
-FastQ records for barcode TCACTCGGATCGAT: 1791
-FastQ records for barcode TCTAGCTCTTCGAT: 2270
-FastQ records for barcode TCCTTGATGTTCGAT: 2023
-FastQ records for barcode TCCTAGAACACGAT: 2082
-FastQ records for barcode TCTGGCAACGGCGAT: 4154
-FastQ records for barcode TCCACCTCCTCGAT: 2425
-FastQ records for barcode CCGGAGAATCGCGAT: 1400
-FastQ records for barcode CTGGCAATCCTCGAT: 2024
-FastQ records for barcode CCGCATGGAACGAT: 1047
-FastQ records for barcode TTGAGCCTATTCGAT: 1839
-FastQ records for barcode CGGACAATGGCGAT: 2733
-FastQ records for barcode TCCTAACATAACGAT: 2296
-FastQ records for barcode TTCTAAGAGACGAT: 2113
-FastQ records for barcode TAAGGCAACCACGAT: 2267
-FastQ records for barcode TCAGTCCGAACGAT: 2463
-FastQ records for barcode TGGAGCTTCCTCGAT: 2534
-FastQ records for barcode TTGGAGGCCAGCGAT: 3211
-FastQ records for barcode CTTGACACCGCGAT: 2709
-FastQ records for barcode TCGCATCGTTCGAT: 2869
-FastQ records for barcode TTCTCATTGAACGAT: 2337
-FastQ records for barcode TCTTACACACGAT: 2111
-FastQ records for barcode CGAGGTTATCGAT: 1364
-FastQ records for barcode TCGACCACTCGAT: 2797
-FastQ records for barcode ATCCGGAATCGAT: 2829
-FastQ records for barcode AACCATCCGCGAT: 3708
-FastQ records for barcode TTACAACCTCGAT: 2858
-FastQ records for barcode CCTGAGATACGAT: 1765
-FastQ records for barcode AACCTCATTCGAT: 1429
-FastQ records for barcode TGCCACGAACGAT: 3164
-FastQ records for barcode TTCGAGACGCGAT: 2475
-FastQ records for barcode TCGCAATTACGAT: 2299
-FastQ records for barcode CAGATCCATCGAT: 1882
-FastQ records for barcode TTAGTCGGACGAT: 1547
-FastQ records for barcode AGGCAATTGCGAT: 1545
-FastQ records for barcode TCTATTCGTCGAT: 1720
-FastQ records for barcode TCTGGATGACGAT: 2077
-FastQ records for barcode TCTAGAGGTCGAT: 2657
-FastQ records for barcode TTGGAGTGTCGAT: 1775
-FastQ records for barcode TCTAACGGACGAT: 3147
-FastQ records for barcode TAGGTGGTTCGAT: 2140
-FastQ records for barcode TCCTCGAATCGAT: 1942
-FastQ records for barcode CTGACCGAACGAT: 1735
-
-FastQ records with no barcode match: 141672
-
-Number of mismatches allowed: 0
-
-Exécution: fastqc -o /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_133857/fastqc_pre_trim /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.fq.gz
-application/x-gzip
-Started analysis of FC20150701_1.fq.gz
-Approx 5% complete for FC20150701_1.fq.gz
-Approx 10% complete for FC20150701_1.fq.gz
-Approx 15% complete for FC20150701_1.fq.gz
-Approx 20% complete for FC20150701_1.fq.gz
-Approx 25% complete for FC20150701_1.fq.gz
-Approx 30% complete for FC20150701_1.fq.gz
-Approx 35% complete for FC20150701_1.fq.gz
-Approx 40% complete for FC20150701_1.fq.gz
-Approx 45% complete for FC20150701_1.fq.gz
-Approx 50% complete for FC20150701_1.fq.gz
-Approx 55% complete for FC20150701_1.fq.gz
-Approx 60% complete for FC20150701_1.fq.gz
-Approx 65% complete for FC20150701_1.fq.gz
-Approx 70% complete for FC20150701_1.fq.gz
-Approx 75% complete for FC20150701_1.fq.gz
-Approx 80% complete for FC20150701_1.fq.gz
-Approx 85% complete for FC20150701_1.fq.gz
-Approx 90% complete for FC20150701_1.fq.gz
-Approx 95% complete for FC20150701_1.fq.gz
-Approx 100% complete for FC20150701_1.fq.gz
-Analysis complete for FC20150701_1.fq.gz
-Exécution: cutadapt -a AGATCGGAA -m 50 -o /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_133857/trimmed_reads/FC20150701_1_trimmed.fq.gz /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.fq.gz
-This is cutadapt 3.2 with Python 3.7.17
-Command line parameters: -a AGATCGGAA -m 50 -o /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_133857/trimmed_reads/FC20150701_1_trimmed.fq.gz /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.fq.gz
-Processing reads on 1 core in single-end mode ...
-Finished in 11.26 s (45 µs/read; 1.33 M reads/minute).
-
-=== Summary ===
-
-Total reads processed:                 250,000
-Reads with adapters:                   148,390 (59.4%)
-Reads that were too short:              17,258 (6.9%)
-Reads written (passing filters):       232,742 (93.1%)
-
-Total basepairs processed:    31,099,511 bp
-Total written (filtered):     28,622,427 bp (92.0%)
-
-=== Adapter 1 ===
-
-Sequence: AGATCGGAA; Type: regular 3'; Length: 9; Trimmed: 148390 times
-
-No. of allowed errors:
-1-9 bp: 0
-
-Bases preceding removed adapters:
-  A: 0.8%
-  C: 0.5%
-  G: 95.0%
-  T: 0.6%
-  none/other: 3.2%
-WARNING:
-    The adapter is preceded by "G" extremely often.
-    The provided adapter sequence could be incomplete at its 5' end.
-
-Overview of removed sequences
-length	count	expect	max.err	error counts
-3	3259	3906.2	0	3259
-4	734	976.6	0	734
-5	504	244.1	0	504
-6	166	61.0	0	166
-7	119	15.3	0	119
-8	243	3.8	0	243
-9	5961	1.0	0	5961
-10	29085	1.0	0	29085
-11	3157	1.0	0	3157
-12	707	1.0	0	707
-13	241	1.0	0	241
-14	225	1.0	0	225
-15	1797	1.0	0	1797
-16	97038	1.0	0	97038
-17	4399	1.0	0	4399
-18	444	1.0	0	444
-19	78	1.0	0	78
-20	30	1.0	0	30
-21	13	1.0	0	13
-22	15	1.0	0	15
-23	6	1.0	0	6
-24	6	1.0	0	6
-25	5	1.0	0	5
-26	6	1.0	0	6
-27	5	1.0	0	5
-28	2	1.0	0	2
-29	3	1.0	0	3
-30	1	1.0	0	1
-31	2	1.0	0	2
-32	1	1.0	0	1
-33	5	1.0	0	5
-34	9	1.0	0	9
-35	5	1.0	0	5
-36	9	1.0	0	9
-37	4	1.0	0	4
-38	2	1.0	0	2
-40	2	1.0	0	2
-41	8	1.0	0	8
-42	6	1.0	0	6
-43	6	1.0	0	6
-44	3	1.0	0	3
-46	1	1.0	0	1
-48	5	1.0	0	5
-49	10	1.0	0	10
-51	2	1.0	0	2
-52	1	1.0	0	1
-53	1	1.0	0	1
-55	2	1.0	0	2
-58	2	1.0	0	2
-59	2	1.0	0	2
-60	4	1.0	0	4
-61	6	1.0	0	6
-62	1	1.0	0	1
-64	9	1.0	0	9
-66	1	1.0	0	1
-72	2	1.0	0	2
-82	1	1.0	0	1
-84	1	1.0	0	1
-87	1	1.0	0	1
-89	1	1.0	0	1
-90	2	1.0	0	2
-91	1	1.0	0	1
-93	1	1.0	0	1
-98	1	1.0	0	1
-108	2	1.0	0	2
-110	1	1.0	0	1
-120	1	1.0	0	1
-127	1	1.0	0	1
-135	1	1.0	0	1
-140	2	1.0	0	2
-142	1	1.0	0	1
-148	1	1.0	0	1
-149	1	1.0	0	1
-150	1	1.0	0	1
-152	1	1.0	0	1
-153	1	1.0	0	1
-155	1	1.0	0	1
-156	1	1.0	0	1
-159	3	1.0	0	3
-160	1	1.0	0	1
-161	1	1.0	0	1
-
-
-WARNING:
-    One or more of your adapter sequences may be incomplete.
-    Please see the detailed output above.
-Exécution: fastqc -o /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_133857/fastqc_post_trim /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_133857/trimmed_reads/FC20150701_1_trimmed.fq.gz
-application/x-gzip
-Started analysis of FC20150701_1_trimmed.fq.gz
-Approx 5% complete for FC20150701_1_trimmed.fq.gz
-Approx 10% complete for FC20150701_1_trimmed.fq.gz
-Approx 15% complete for FC20150701_1_trimmed.fq.gz
-Approx 20% complete for FC20150701_1_trimmed.fq.gz
-Approx 25% complete for FC20150701_1_trimmed.fq.gz
-Approx 30% complete for FC20150701_1_trimmed.fq.gz
-Approx 35% complete for FC20150701_1_trimmed.fq.gz
-Approx 40% complete for FC20150701_1_trimmed.fq.gz
-Approx 45% complete for FC20150701_1_trimmed.fq.gz
-Approx 50% complete for FC20150701_1_trimmed.fq.gz
-Approx 55% complete for FC20150701_1_trimmed.fq.gz
-Approx 60% complete for FC20150701_1_trimmed.fq.gz
-Approx 65% complete for FC20150701_1_trimmed.fq.gz
-Approx 70% complete for FC20150701_1_trimmed.fq.gz
-Approx 75% complete for FC20150701_1_trimmed.fq.gz
-Approx 80% complete for FC20150701_1_trimmed.fq.gz
-Approx 85% complete for FC20150701_1_trimmed.fq.gz
-Approx 90% complete for FC20150701_1_trimmed.fq.gz
-Approx 95% complete for FC20150701_1_trimmed.fq.gz
-Analysis complete for FC20150701_1_trimmed.fq.gz
-Exécution: bwa mem -t 4 /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.bgz /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_133857/trimmed_reads/FC20150701_1_trimmed.fq.gz > /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_133857/alignment/aligned.sam
-[bwt_restore_sa] fail to open file '/home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.bgz.sa' : No such file or directory
-ERREUR: Échec de l'alignement BWA
-klrhe@manitou:~/Devoir2_BVG_7003/Script> cd ../
-klrhe@manitou:~/Devoir2_BVG_7003> rm ~/Devoir2_BVG_7003/Data/Gmax_275_v2.0.fa.bgz.*
-klrhe@manitou:~/Devoir2_BVG_7003> bwa index ~/Devoir2_BVG_7003/Data/Gmax_275_v2.0.fa.bgz
-Si 'bwa' n'est pas une faute de frappe, vous pouvez utiliser command-not-found pour rechercher le paquet qui le contient, comme ceci :
-    cnf bwa
-klrhe@manitou:~/Devoir2_BVG_7003> module load bwa/0.7.18
-klrhe@manitou:~/Devoir2_BVG_7003> bwa index ~/Devoir2_BVG_7003/Data/Gmax_275_v2.0.fa.bgz
-[bwa_index] Pack FASTA... 4.49 sec
-[bwa_index] Construct BWT for the packed sequence...
-[BWTIncCreate] textLength=687891218, availableWord=60402188
-[BWTIncConstructFromPacked] 10 iterations done. 95462178 characters processed.
-[BWTIncConstructFromPacked] 20 iterations done. 180365538 characters processed.
-[BWTIncConstructFromPacked] 30 iterations done. 255823874 characters processed.
-
-  [Restauré 2 déc. 2024 à 13:49:28]
-Last login: Mon Dec  2 13:30:27 on ttys001
-/Users/kimy/.zsh_sessions/6F082BD1-1134-4B61-A0C3-F7F857B6F90D.session:1: command not found: ^[]7
-/Users/kimy/.zsh_sessions/6F082BD1-1134-4B61-A0C3-F7F857B6F90D.session:1: no such file or directory: file://MacBookAir-de-Kimy-Li.local/Users/kimy^G
-/Users/kimy/.zsh_sessions/6F082BD1-1134-4B61-A0C3-F7F857B6F90D.session:2: command not found: Saving
-(base) kimy@MacBookAir-de-Kimy-Li ~ % ssh klrhe@manitou.ibis.ulaval.ca
-(klrhe@manitou.ibis.ulaval.ca) Password: 
-Last login: Mon Dec  2 13:30:50 2024 from 10.243.7.203
-********************************************************************************
-                        _ _              
-                       (_) |             
-  _ __ ___   __ _ _ __  _| |_ ___  _   _ 
- | '_ ` _ \ / _` | '_ \| | __/ _ \| | | |
- | | | | | | (_| | | | | | || (_) | |_| |
- |_| |_| |_|\__,_|_| |_|_|\__\___/ \__,_|
-
-module avail (Pour voir les programmes et les versions disponibles)
-
-
-Documentation complete sur comment utiliser thoth et manitou /
-Complete documentation on how to use thoth and manitou :
-
-|----->>> http://www.ibis.ulaval.ca/services/bioinformatique/documentation-serveurs/ <<-----|
-
--> Vous devez obligatoirement soumettre vos calculs dans le systeme de queue
--> SLURM
-
--> Il n'y a AUCUNE prise de copie de sauvegarde des données sur manitou / thoth
-
--> Pour du support : bioinfo@ibis.ulaval.ca
-
-********************************************************************************
-
-klrhe@manitou:~> cd Devoir2_BVG_7003/
-klrhe@manitou:~/Devoir2_BVG_7003> cd Script/
-klrhe@manitou:~/Devoir2_BVG_7003/Script> nano pipeline2.sh
-klrhe@manitou:~/Devoir2_BVG_7003/Script> bash pipeline2.sh 
-pipeline2.sh: ligne 1: à#!/bin/bash: Aucun fichier ou dossier de ce type
-Loading cutadapt/3.2
-  Loading requirement: python/3.7
-DEBUG: SCRIPT_DIR is /home/klrhe/Devoir2_BVG_7003/Script
-DEBUG: DATA_DIR is /home/klrhe/Devoir2_BVG_7003/Script/../Data
-DEBUG: LOG_DIR is /home/klrhe/Devoir2_BVG_7003/Script/../Logs
-DEBUG: INPUT_FASTQ = /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.fq.gz
-DEBUG: BARCODE_FILE = /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.txt
-DEBUG: REF_GENOME = /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.gz
-Exécution: gunzip -c /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.gz | bgzip > /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.bgz
-Indexing reference genome with BWA...
-Exécution: bwa index /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.bgz
-Indexing completed successfully.
-Exécution: sabre se -f /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.fq.gz -b /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.txt -u /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/unknown.fastq
-Exécution: fastqc -o /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/fastqc_pre_trim /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.fq.gz
-Exécution: cutadapt -a AGATCGGAA -m 50 -o /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/trimmed_reads/FC20150701_1_trimmed.fq.gz /home/klrhe/Devoir2_BVG_7003/Script/../Data/FC20150701_1.fq.gz
-Exécution: fastqc -o /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/fastqc_post_trim /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/trimmed_reads/FC20150701_1_trimmed.fq.gz
-Exécution: bwa mem -t 4 /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.bgz /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/trimmed_reads/FC20150701_1_trimmed.fq.gz > /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/alignment/aligned.sam
-Exécution: samtools view -b /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/alignment/aligned.sam > /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/alignment/aligned.bam
-Exécution: samtools sort /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/alignment/aligned.bam -o /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/alignment/sorted.bam
-Exécution: samtools index /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/alignment/sorted.bam
-Exécution: bcftools mpileup -Ou -f /home/klrhe/Devoir2_BVG_7003/Script/../Data/Gmax_275_v2.0.fa.bgz /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/alignment/sorted.bam | bcftools call -mv -Ov -o /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031/results/variants.vcf
-Pipeline terminé avec succès. Résultats dans /home/klrhe/Devoir2_BVG_7003/Script/../Résultats/GBS_data_20241202_135031
-klrhe@manitou:~/Devoir2_BVG_7003/Script> ls
-Devoir2_comment_bioinfo.txt  FC20150701_1_BC16.fq  FC20150701_1_BC24.fq  FC20150701_1_BC32.fq  FC20150701_1_BC48.fq  FC20150701_1_BC56.fq  FC20150701_1_BC64.fq           Script_v3.sh
-FC20150701_1_BC09.fq         FC20150701_1_BC17.fq  FC20150701_1_BC25.fq  FC20150701_1_BC41.fq  FC20150701_1_BC49.fq  FC20150701_1_BC57.fq  paralell                       Script_v4.sh
-FC20150701_1_BC10.fq         FC20150701_1_BC18.fq  FC20150701_1_BC26.fq  FC20150701_1_BC42.fq  FC20150701_1_BC50.fq  FC20150701_1_BC58.fq  parallel-20241122              ScriptV5.sh
-FC20150701_1_BC11.fq         FC20150701_1_BC19.fq  FC20150701_1_BC27.fq  FC20150701_1_BC43.fq  FC20150701_1_BC51.fq  FC20150701_1_BC59.fq  parallel-20241122.tar.bz2      snpEff
-FC20150701_1_BC12.fq         FC20150701_1_BC20.fq  FC20150701_1_BC28.fq  FC20150701_1_BC44.fq  FC20150701_1_BC52.fq  FC20150701_1_BC60.fq  parallel-20241122.tar.bz2.sig  snpEff_latest_core.zip
-FC20150701_1_BC13.fq         FC20150701_1_BC21.fq  FC20150701_1_BC29.fq  FC20150701_1_BC45.fq  FC20150701_1_BC53.fq  FC20150701_1_BC61.fq  pipeline2.sh                   snpEff_latest_core.zip.1
-FC20150701_1_BC14.fq         FC20150701_1_BC22.fq  FC20150701_1_BC30.fq  FC20150701_1_BC46.fq  FC20150701_1_BC54.fq  FC20150701_1_BC62.fq  pipeline.sh                    snpEff_latest_core.zip.2
-FC20150701_1_BC15.fq         FC20150701_1_BC23.fq  FC20150701_1_BC31.fq  FC20150701_1_BC47.fq  FC20150701_1_BC55.fq  FC20150701_1_BC63.fq  Script v2
-klrhe@manitou:~/Devoir2_BVG_7003/Script> nano pipeline2.sh 
-
-  GNU nano 7.2                                                                                  pipeline2.sh                                                                                           
-à#!/bin/bash
+#!/bin/bash
 # ========================================
 # Universal Pipeline for Variant Calling
 # ========================================
@@ -732,6 +67,76 @@ mkdir -p "$BASE_DIR/logs"
 
 # Log and error-handling function
 log_and_check() {
-                                                                                       [ Lecture de 142 lignes ]
-^G Aide           ^O Écrire         ^W Chercher       ^K Couper         ^T Exécuter       ^C Emplacement    M-U Annuler       M-A Marquer       M-] -> Crochet    M-Q Précédent     ^B En arrière
-^X Quitter        ^R Lire fich.     ^\ Remplacer      ^U Coller         ^J Justifier      ^/ Aller ligne    M-E Refaire       M-6 Copier        ^Q Retrouver      M-W Suivant       ^F En avant
+    local command="$1"
+    local error_message="$2"
+    local log_file="$LOG_DIR/pipeline.log"
+
+    echo "Exécution: $command" | tee -a "$log_file"
+    eval "$command" &>> "$log_file"
+
+    if [ $? -ne 0 ]; then
+        echo "ERREUR: $error_message" | tee -a "$LOG_DIR/errors.log"
+        exit 1
+    fi
+}
+
+# Logs
+exec > >(tee -a "$LOG_DIR/pipeline.log") 2>&1
+
+# Decompress the reference genome if necessary
+if [[ "$REF_GENOME" == *.gz ]]; then
+    log_and_check "gunzip -c $REF_GENOME | bgzip > ${REF_GENOME%.gz}.bgz" \
+        "Decompression of reference genome failed"
+    REF_GENOME="${REF_GENOME%.gz}.bgz"
+fi
+
+# Step 1: Index Reference Genome (if needed)
+if [ ! -f "$REF_GENOME.bwt" ]; then
+    echo "Indexing reference genome with BWA..."
+    log_and_check "bwa index $REF_GENOME" "Échec de l'indexation du génome de référence."
+    echo "Indexing completed successfully."
+fi
+
+# Step 2: Demultiplexing with Sabre
+log_and_check "sabre se -f $INPUT_FASTQ -b $BARCODE_FILE -u $BASE_DIR/unknown.fastq" \
+    "Échec du démultiplexage avec sabre"
+
+# Step 3: FastQC Pre-trim
+log_and_check "fastqc -o $BASE_DIR/fastqc_pre_trim $INPUT_FASTQ" \
+    "Échec de l'analyse FastQC pré-trim"
+
+# Step 4: Trimming with Cutadapt
+TRIMMED_FASTQ="$BASE_DIR/trimmed_reads/$(basename "$INPUT_FASTQ" .fq.gz)_trimmed.fq.gz"
+log_and_check "cutadapt -a AGATCGGAA -m 50 -o $TRIMMED_FASTQ $INPUT_FASTQ" \
+    "Échec du trimming avec Cutadapt"
+
+# Step 5: FastQC Post-trim
+log_and_check "fastqc -o $BASE_DIR/fastqc_post_trim $TRIMMED_FASTQ" \
+    "Échec de l'analyse FastQC post-trim"
+
+# Step 6: Alignment with BWA
+SAM_FILE="$BASE_DIR/alignment/aligned.sam"
+log_and_check "bwa mem -t $CPU $REF_GENOME $TRIMMED_FASTQ > $SAM_FILE" \
+    "Échec de l'alignement BWA"
+
+# Step 7: SAM to BAM Conversion with Samtools
+BAM_FILE="$BASE_DIR/alignment/aligned.bam"
+SORTED_BAM="$BASE_DIR/alignment/sorted.bam"
+log_and_check "samtools view -b $SAM_FILE > $BAM_FILE" \
+    "Échec de la conversion SAM à BAM"
+
+log_and_check "samtools sort $BAM_FILE -o $SORTED_BAM" \
+    "Échec du tri BAM"
+
+log_and_check "samtools index $SORTED_BAM" \
+    "Échec de l'indexation BAM"
+
+# Step 8: Variant Calling with BCFtools  
+VARIANTS_BCF="$BASE_DIR/results/variants.bcf"  
+VARIANTS_VCF="$BASE_DIR/results/variants.vcf"  
+
+# Use bcftools mpileup instead of samtools mpileup  
+log_and_check "bcftools mpileup -Ou -f $REF_GENOME $SORTED_BAM | bcftools call -mv -Ov -o $VARIANTS_VCF" \
+    "Échec du mpileup et de l'appel de variants"
+
+echo "Pipeline terminé avec succès. Résultats dans $BASE_DIR" | tee -a "$LOG_DIR/pipeline.log"
